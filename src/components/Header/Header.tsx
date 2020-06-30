@@ -1,5 +1,5 @@
 import React from "react";
-import "./Header.sass";
+import "./Header.scss";
 import { Link } from "react-router-dom";
 
 function Header() {
@@ -7,12 +7,24 @@ function Header() {
     <div className="header">
       <h1 className="header-title">CORGOWAFFLES</h1>
       <nav className="nav-bar">
-        <Link to="/">HOME</Link>
-        <Link to="/shop">SHOP</Link>
-        <Link to="/about">ABOUT</Link>
-        <Link to="/contact">CONTACT</Link>
-        <Link to="/faq">FAQ</Link>
-        <Link to="/cart">CART</Link>
+        <Link to="/" className="nav-item current-page">
+          HOME
+        </Link>
+        <Link to="/shop" className="nav-item">
+          SHOP
+        </Link>
+        <Link to="/about" className="nav-item">
+          ABOUT
+        </Link>
+        <Link to="/contact" className="nav-item">
+          CONTACT
+        </Link>
+        <Link to="/faq" className="nav-item">
+          FAQ
+        </Link>
+        <Link to="/cart" className="nav-item">
+          CART
+        </Link>
       </nav>
     </div>
   );

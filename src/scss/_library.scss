@@ -1,0 +1,18 @@
+/***** THEME COLORS *****/
+
+$primary-color: #a1b7ba;
+$accent-color: #476a6f;
+$white-color: #ffffff;
+$gray-color: #7a7a7a;
+$black-color: #141414;
+
+/***** FONTS *****/
+
+$main-font: "Source Sans Pro", sans-serif;
+
+/***** MIXINS *****/
+
+@mixin flex-space-between {
+  display: flex;
+  justify-content: space-between;
+}

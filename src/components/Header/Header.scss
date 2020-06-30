@@ -1,0 +1,32 @@
+@import "../../scss/library";
+
+/***** TYPOGRAPHY *****/
+.header-title {
+  letter-spacing: 0.1px;
+  font-size: 2.5rem;
+}
+
+.nav-item {
+  margin-left: 1.5rem;
+  font-size: 1.25rem;
+  text-decoration: none;
+  color: $black-color;
+  font-weight: 700;
+  &:hover {
+    color: $gray-color;
+  }
+}
+
+/***** LAYOUT *****/
+.header {
+  @include flex-space-between;
+  align-items: baseline;
+}
+
+.nav-bar {
+  @include flex-space-between;
+}
+
+.current-page {
+  color: $gray-color;
+}

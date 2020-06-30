@@ -3,7 +3,7 @@ import Header from "./components/Header/Header";
 import { Switch, Route } from "react-router-dom";
 import LandingPage from "./components/LandingPage/LandingPage";
 
-import "./App.sass";
+import "./App.scss";
 
 function App() {
   return (
