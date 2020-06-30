@@ -1,29 +1,13 @@
 @import "./scss/library";
 
-/* TYPES  */
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: $main-font;
-}
-
-h1 {
-  margin: 0;
-}
-
 /***** TYPOGRAPHY *****/
 
 /***** LAYOUT *****/
 
 .app-container {
-  margin: 0 auto;
-  padding: 2rem 2.5rem 0;
   background: $primary-color;
   height: 100vh;
+  overflow: scroll;
+  padding: $layout-padding;
 }
-
 /***** MEDIA QUERIES *****/

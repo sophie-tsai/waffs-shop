@@ -1,0 +1,52 @@
+@import "../../scss/library";
+
+/***** TYPOGRAPHY *****/
+
+.intro-headline {
+  font-size: 3rem;
+  margin: 0;
+}
+
+/***** IMGS *****/
+
+.intro-main-img {
+  width: 100%;
+}
+
+.intro-secondary-img {
+  width: 100%;
+}
+
+/***** BUTTON *****/
+
+.button-accent {
+  @include button($white-color, $black-color, $black-color);
+  align-self: start;
+  &:hover {
+    @include button($black-color, $white-color, $black-color);
+  }
+}
+
+/***** LAYOUT *****/
+
+.landing-page {
+  @include page-container-layout;
+}
+
+.intro-section {
+  @include flex(space-between);
+}
+
+.intro-main-div {
+  order: 2;
+  width: 50%;
+}
+.intro-secondary-div {
+  @include flex(space-between, column);
+  width: 50%;
+  order: 1;
+  padding: 4em;
+  padding-bottom: 0;
+}
+
+/***** MEDIA QUERIES *****/

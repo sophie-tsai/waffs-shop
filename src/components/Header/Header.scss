@@ -19,12 +19,17 @@
 
 /***** LAYOUT *****/
 .header {
-  @include flex-space-between;
+  @include flex(space-between);
+  padding: $layout-padding;
+  width: 100%;
   align-items: baseline;
+  position: fixed;
+  padding-bottom: 1rem;
+  background: $primary-color;
 }
 
 .nav-bar {
-  @include flex-space-between;
+  @include flex(space-between);
 }
 
 .current-page {

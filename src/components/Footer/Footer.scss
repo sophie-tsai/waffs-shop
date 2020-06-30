@@ -1,0 +1,46 @@
+@import "../../scss/library";
+
+/***** TYPOGRAPHY *****/
+
+.footer-link {
+  @include link;
+  margin-right: 2em;
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.signature {
+  @include link;
+}
+
+.copyright {
+  margin-top: 2em;
+}
+
+/***** ICONS *****/
+
+.social-link {
+  cursor: pointer;
+  color: $black-color;
+  margin-right: 2em;
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+/***** BUTTON *****/
+
+/***** LAYOUT *****/
+
+.footer {
+  background: white;
+  text-align: center;
+  padding: 2em 0;
+  font-size: 0.75rem;
+}
+
+.social-links-div {
+  margin: 1em 0;
+}
+/***** MEDIA QUERIES *****/
