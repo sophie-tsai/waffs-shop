@@ -61,8 +61,10 @@
 .intro-CTA-div {
   @include intro-section-center;
 }
+
 /***** MEDIA QUERIES *****/
 
+// over 900px in height
 @media (min-height: 900px) {
   .intro-main-img {
     height: 95vh;

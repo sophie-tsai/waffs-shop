@@ -1,0 +1,14 @@
+@import "../../scss/library";
+
+/***** TYPOGRAPHY *****/
+
+/***** IMGS *****/
+
+/***** BUTTON *****/
+
+/***** LAYOUT *****/
+.about-page {
+  @include page-container-layout;
+}
+
+/***** MEDIA QUERIES *****/

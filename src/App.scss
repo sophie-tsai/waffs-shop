@@ -10,4 +10,12 @@
   overflow: scroll;
   padding: $layout-padding;
 }
+
 /***** MEDIA QUERIES *****/
+
+// under 1100px in width
+@media (max-width: $layout-breakpoint-large) {
+  .app-container {
+    padding: 1rem 0 0;
+  }
+}

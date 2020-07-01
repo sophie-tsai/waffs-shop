@@ -35,3 +35,21 @@
 .current-page {
   color: $gray-color;
 }
+
+.nav-icon {
+  color: $black-color;
+  display: none;
+}
+
+/***** MEDIA QUERIES *****/
+
+// under 900px in width
+@media (max-width: $layout-breakpoint-medium) {
+  .nav-bar {
+    display: none;
+  }
+
+  .nav-icon {
+    display: block;
+  }
+}
