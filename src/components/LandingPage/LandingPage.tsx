@@ -1,7 +1,7 @@
 import React from "react";
 import "./LandingPage.scss";
-import wafflesGriffith from "../../assets/waffles-griffith.jpg";
-import wafflesGrass from "../../assets/waffles-grass.jpg";
+import wafflesBeach from "../../assets/waffles-beach.jpg";
+import wafflesSmiling from "../../assets/waffles-smiling.jpg";
 
 function LandingPage() {
   return (
@@ -9,21 +9,24 @@ function LandingPage() {
       <section className="intro-section">
         <div className="intro-main-div">
           <img
-            src={wafflesGriffith}
+            src={wafflesBeach}
             className="intro-main-img"
-            alt="waffles at griffith observatory"
+            alt="waffles at the beach!"
           />
         </div>
+
         <div className="intro-secondary-div">
-          <h2 className="intro-headline">
-            welcome to <br />
-            the waffs shop
-          </h2>
-          <button className="button-accent">shop my merch</button>
+          <div className="intro-CTA-div">
+            <h2 className="intro-headline">
+              welcome to <br />
+              the waffs shop
+            </h2>
+            <button className="button-accent">shop my merch</button>
+          </div>
           <img
-            src={wafflesGrass}
+            src={wafflesSmiling}
             className="intro-secondary-img"
-            alt="waffles laying in the grass smiling"
+            alt="waffles smiling"
           />
         </div>
       </section>

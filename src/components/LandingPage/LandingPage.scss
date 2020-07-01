@@ -5,16 +5,21 @@
 .intro-headline {
   font-size: 3rem;
   margin: 0;
+  margin-bottom: 1em;
 }
 
 /***** IMGS *****/
 
 .intro-main-img {
   width: 100%;
+  height: 140vh;
+  object-fit: cover;
 }
 
 .intro-secondary-img {
-  width: 100%;
+  @include intro-section-center;
+  display: block;
+  margin-top: 6em;
 }
 
 /***** BUTTON *****/
@@ -35,18 +40,39 @@
 
 .intro-section {
   @include flex(space-between);
+  padding-bottom: 1em;
+  height: 140vh;
+  //   overflow: hidden;
 }
 
 .intro-main-div {
   order: 2;
   width: 50%;
 }
+
 .intro-secondary-div {
-  @include flex(space-between, column);
+  @include flex(center, column);
   width: 50%;
   order: 1;
-  padding: 4em;
-  padding-bottom: 0;
+  padding: 2em;
+  padding-top: 6em;
 }
 
+.intro-CTA-div {
+  @include intro-section-center;
+}
 /***** MEDIA QUERIES *****/
+
+@media (min-height: 900px) {
+  .intro-main-img {
+    height: 95vh;
+  }
+
+  .intro-section {
+    height: 100vh;
+  }
+
+  .intro-secondary-div {
+    padding-top: 0em;
+  }
+}
