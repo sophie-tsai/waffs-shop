@@ -7,7 +7,9 @@ import { faBars, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 function Header() {
   return (
     <div className="header">
-      <FontAwesomeIcon icon={faBars} className="nav-icon" size="2x" />
+      <Link to="/cart" className="nav-icon">
+        <FontAwesomeIcon icon={faBars} size="1x" />
+      </Link>
       <h1 className="header-title">CORGOWAFFLES</h1>
       <nav className="nav-bar">
         <Link to="/" className="nav-item current-page">
@@ -30,7 +32,7 @@ function Header() {
         </Link>
       </nav>
       <Link to="/cart" className="nav-icon">
-        <FontAwesomeIcon icon={faShoppingCart} size="2x" />
+        <FontAwesomeIcon icon={faShoppingCart} size="1x" />
       </Link>
     </div>
   );

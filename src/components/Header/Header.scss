@@ -39,6 +39,7 @@
 .nav-icon {
   color: $black-color;
   display: none;
+  font-size: 1.5rem;
 }
 
 /***** MEDIA QUERIES *****/
@@ -51,5 +52,20 @@
 
   .nav-icon {
     display: block;
+  }
+}
+
+// under 600px in width
+@media (max-width: $layout-breakpoint-small) {
+  .header {
+    padding: 1rem 2rem;
+  }
+
+  .header-title {
+    font-size: 2rem;
+  }
+
+  .nav-icon {
+    font-size: 1.25rem;
   }
 }

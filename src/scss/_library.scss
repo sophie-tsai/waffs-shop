@@ -14,16 +14,20 @@ $main-font: "Source Sans Pro", sans-serif;
 
 $layout-padding: 1rem 4rem 0;
 
+/***** MEDIA QUERIES *****/
+
+$layout-breakpoint-xlarge: 1500px;
+$layout-breakpoint-large: 1100px;
+$layout-breakpoint-medium: 900px;
+$layout-breakpoint-small: 600px;
+$layout-breakpoint-phone: 450px;
+
 /***** MIXINS *****/
 
-@mixin flex($spacing, $direction: row) {
+@mixin flex($spacing: normal, $direction: row) {
   display: flex;
   flex-direction: $direction;
-  @if $direction == row {
-    justify-content: $spacing;
-  } @else {
-    justify-content: $spacing;
-  }
+  justify-content: $spacing;
 }
 
 @mixin page-container-layout {
@@ -49,9 +53,14 @@ $layout-padding: 1rem 4rem 0;
   cursor: pointer;
 }
 
-@mixin intro-section-center {
-  width: 24em;
+@mixin intro-section-center($device: web) {
   margin: 0 auto;
+  @if $device == web {
+    width: 24rem;
+  }
+  @if $device == phone {
+    width: 15rem;
+  }
 }
 
 /***** TYPES *****/
@@ -68,11 +77,3 @@ body {
 h1 {
   margin: 0;
 }
-
-/***** MEDIA QUERIES *****/
-
-$layout-breakpoint-xlarge: 1500px;
-$layout-breakpoint-large: 1100px;
-$layout-breakpoint-medium: 900px;
-$layout-breakpoint-small: 600px;
-$layout-breakpoint-phone: 300px;

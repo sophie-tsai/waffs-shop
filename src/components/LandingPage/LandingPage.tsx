@@ -16,18 +16,22 @@ function LandingPage() {
         </div>
 
         <div className="intro-secondary-div">
-          <div className="intro-CTA-div">
+          <div className="intro-div-header">
             <h2 className="intro-headline">
               welcome to <br />
               the waffs shop
             </h2>
-            <button className="button-accent">shop my merch</button>
           </div>
-          <img
-            src={wafflesSmiling}
-            className="intro-secondary-img"
-            alt="waffles smiling"
-          />
+          <div className="intro-div-button">
+            <button className="intro-button-accent">shop my merch</button>
+          </div>
+          <div className="intro-div-img">
+            <img
+              src={wafflesSmiling}
+              className="intro-secondary-img"
+              alt="waffles smiling"
+            />
+          </div>
         </div>
       </section>
     </div>
