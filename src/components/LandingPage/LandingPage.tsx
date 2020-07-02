@@ -6,16 +6,16 @@ import wafflesSmiling from "../../assets/waffles-smiling.jpg";
 function LandingPage() {
   return (
     <div className="landing-page">
-      <section className="intro-section">
-        <div className="intro-main-div">
+      <section className="split-section">
+        <div className="split-main-div">
           <img
             src={wafflesBeach}
-            className="intro-main-img"
+            className="main-img-intro"
             alt="waffles at the beach!"
           />
         </div>
 
-        <div className="intro-secondary-div">
+        <div className="split-secondary-div">
           <div className="intro-div-header">
             <h2 className="intro-headline">
               welcome to <br />
@@ -34,6 +34,8 @@ function LandingPage() {
           </div>
         </div>
       </section>
+
+      <hr className="theme-horizontal-bar" />
     </div>
   );
 }

@@ -2,6 +2,18 @@
 
 /***** TYPOGRAPHY *****/
 
+.about-copy {
+  line-height: 2.25em;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  margin-top: 2.25em;
+}
+
+.about-headline {
+  @include headline;
+}
+
 /***** IMGS *****/
 
 /***** BUTTON *****/
@@ -11,4 +23,32 @@
   @include page-container-layout;
 }
 
+.about-div {
+  @include intro-section-center;
+  &-headline {
+    @extend .about-div;
+  }
+  &-copy {
+    @extend .about-div;
+  }
+}
+
 /***** MEDIA QUERIES *****/
+
+// under 600px in width
+@media (max-width: $layout-breakpoint-small) {
+  .about-page {
+    padding-top: 3.1em;
+  }
+}
+
+// under 450px in width
+@media (max-width: $layout-breakpoint-phone) {
+  .about-headline {
+    font-size: 2rem;
+  }
+
+  .about-div {
+    @include intro-section-center(phone);
+  }
+}

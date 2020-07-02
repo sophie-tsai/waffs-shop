@@ -69,3 +69,14 @@
     font-size: 1.25rem;
   }
 }
+
+// under 450px in width
+@media (max-width: $layout-breakpoint-phone) {
+  .header-title {
+    font-size: 1.75rem;
+  }
+
+  .header {
+    padding: 1rem 1rem;
+  }
+}
