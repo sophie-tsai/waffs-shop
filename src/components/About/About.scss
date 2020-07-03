@@ -4,7 +4,7 @@
 
 .about-copy {
   line-height: 2.25em;
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 600;
   letter-spacing: 0.2px;
   margin-top: 2.25em;
@@ -46,6 +46,10 @@
 @media (max-width: $layout-breakpoint-phone) {
   .about-headline {
     font-size: 2rem;
+  }
+
+  .about-copy {
+    font-size: 1rem;
   }
 
   .about-div {
