@@ -42,6 +42,45 @@
   font-size: 1.5rem;
 }
 
+/***** SIDE MENU *****/
+
+// sidebar wrapper styles
+.bm-menu-wrap {
+  position: fixed;
+  width: 12rem;
+  top: 5em;
+  height: 100%;
+}
+
+// color/shape of close button
+.bm-cross {
+  background: $black-color;
+}
+
+// general sidebar styles
+.bm-menu {
+  background: $primary-color;
+  padding: 2.5em 1.5em 0;
+  font-size: 1.15em;
+  width: 12rem;
+}
+
+// individual item
+.bm-item {
+  display: inline-block;
+  outline: none;
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-decoration: none;
+  margin-bottom: 1rem;
+  color: $black-color;
+  transition: color 0.2s;
+
+  &:hover {
+    color: $gray-color;
+  }
+}
+
 /***** MEDIA QUERIES *****/
 
 // under 900px in width
@@ -68,6 +107,10 @@
   .nav-icon {
     font-size: 1.25rem;
   }
+
+  .bm-menu-wrap {
+    top: 4.5em;
+  }
 }
 
 // under 450px in width
@@ -78,5 +121,9 @@
 
   .header {
     padding: 1rem 1rem;
+  }
+
+  .bm-menu-wrap {
+    top: 4em;
   }
 }
