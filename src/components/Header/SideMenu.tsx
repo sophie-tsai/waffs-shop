@@ -25,7 +25,7 @@ function SideMenu(props: SideMenuProps) {
   }, [width]);
 
   return (
-    <Menu noOverlay customBurgerIcon={false} isOpen={true} styles={styles}>
+    <Menu noOverlay customBurgerIcon={false} styles={styles}>
       <Link to="/" className="menu-item">
         HOME
       </Link>

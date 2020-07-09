@@ -3,6 +3,7 @@ import "./LandingPage.scss";
 import wafflesBeach from "../../assets/waffles-beach.jpg";
 import SplitSection from "../layout/SplitSection";
 import LandingContent from "./LandingContent";
+import InstaFeed from "./InstaFeed/InstaFeed";
 
 const LandingPage: FC = () => {
   return (
@@ -13,6 +14,7 @@ const LandingPage: FC = () => {
         imgAlt="waffles at the beach!"
         childComp={<LandingContent />}
       />
+      <InstaFeed />
     </div>
   );
 };
