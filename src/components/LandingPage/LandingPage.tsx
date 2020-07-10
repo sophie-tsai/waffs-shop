@@ -14,7 +14,7 @@ const LandingPage: FC = () => {
         imgAlt="waffles at the beach!"
         childComp={<LandingContent />}
       />
-      <InstaFeed />
+      {/* <InstaFeed /> */}
     </div>
   );
 };

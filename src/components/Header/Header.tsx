@@ -4,6 +4,8 @@ import SideMenu from "./SideMenu";
 
 const Header: FC = () => {
   const [width, setWidth] = useState(900);
+  const [isOpen, setIsOpen] = useState(false);
+  console.log(isOpen);
 
   const setWindowWidth = () => {
     const windowWidth =
@@ -14,6 +16,10 @@ const Header: FC = () => {
     setWidth(windowWidth);
   };
 
+  const toggleSideMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
   useEffect(() => {
     setWindowWidth();
 
@@ -22,10 +28,16 @@ const Header: FC = () => {
     return () => window.removeEventListener("resize", setWindowWidth);
   }, []);
 
+  useEffect(() => {
+    if (width > 900) {
+      setIsOpen(false);
+    }
+  }, [width]);
+
   return (
     <>
-      <FullMenu />
-      <SideMenu width={width} />
+      <FullMenu toggleSideMenu={toggleSideMenu} />
+      <SideMenu width={width} isOpen={isOpen} />
     </>
   );
 };

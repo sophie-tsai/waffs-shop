@@ -1,13 +1,24 @@
-import React, { FC } from "react";
+import React from "react";
 import "./Header.scss";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
-const FullMenu: FC = () => {
+type FullMenuProps = {
+  toggleSideMenu: () => void;
+};
+
+function FullMenu(props: FullMenuProps) {
+  const { toggleSideMenu } = props;
+
   return (
     <div className="header">
-      <FontAwesomeIcon icon={faBars} size="2x" className="nav-icon" />
+      <FontAwesomeIcon
+        icon={faBars}
+        size="2x"
+        className="nav-icon"
+        onClick={toggleSideMenu}
+      />
       <h1 className="header-title">CORGOWAFFLES</h1>
       <nav className="nav-bar">
         <Link to="/" className="nav-item current-page">
@@ -34,6 +45,6 @@ const FullMenu: FC = () => {
       </Link>
     </div>
   );
-};
+}
 
 export default FullMenu;

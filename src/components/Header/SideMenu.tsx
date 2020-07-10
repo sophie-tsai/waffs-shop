@@ -4,10 +4,11 @@ import { Link } from "react-router-dom";
 
 type SideMenuProps = {
   width: number;
+  isOpen: boolean;
 };
 
 function SideMenu(props: SideMenuProps) {
-  const { width } = props;
+  const { width, isOpen } = props;
   const [menuGap, setMenuGap] = useState("5");
 
   const styles = {
@@ -25,7 +26,7 @@ function SideMenu(props: SideMenuProps) {
   }, [width]);
 
   return (
-    <Menu noOverlay customBurgerIcon={false} styles={styles}>
+    <Menu noOverlay customBurgerIcon={false} isOpen={isOpen} styles={styles}>
       <Link to="/" className="menu-item">
         HOME
       </Link>

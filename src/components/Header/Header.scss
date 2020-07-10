@@ -40,6 +40,7 @@
   color: $black-color;
   display: none;
   font-size: 1.5rem;
+  cursor: pointer;
 }
 
 /***** SIDE MENU *****/
@@ -50,6 +51,11 @@
   width: 12rem;
   top: 5em;
   height: 100%;
+}
+
+// position and sizing of clickable cross button
+.bm-cross-button {
+  display: none;
 }
 
 // color/shape of close button
