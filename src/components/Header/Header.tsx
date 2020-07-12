@@ -5,7 +5,6 @@ import SideMenu from "./SideMenu";
 const Header: FC = () => {
   const [width, setWidth] = useState(900);
   const [isOpen, setIsOpen] = useState(false);
-  console.log(isOpen);
 
   const setWindowWidth = () => {
     const windowWidth =

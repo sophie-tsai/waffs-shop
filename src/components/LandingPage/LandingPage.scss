@@ -22,6 +22,11 @@
     height: 100vh;
     object-position: 50% 150%;
   }
+  &-contact {
+    @extend .main-img;
+    height: 100vh;
+    object-position: 50% 100%;
+  }
 }
 
 .intro-secondary-img {
@@ -170,6 +175,11 @@
   .main-img-about {
     height: 60vh;
     object-position: 50% 50%;
+  }
+
+  .main-img-contact {
+    height: 65vh;
+    object-position: 50% 20%;
   }
 }
 

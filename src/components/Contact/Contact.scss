@@ -6,9 +6,97 @@
 
 /***** BUTTON *****/
 
+.form-button {
+  @include button($white-color, $black-color, $black-color);
+
+  &:hover {
+    @include button($black-color, $white-color, $black-color);
+  }
+}
+
+/***** FORM *****/
+
+.contact-form {
+  @include flex(normal, column);
+  margin: 0 auto;
+  width: 24rem;
+}
+
+.form-element {
+  border: none;
+  border-bottom: $black-color solid 1px;
+  padding: 1.5em 0.75em 0.5em;
+  font-size: 1rem;
+  outline: none;
+
+  ::placeholder {
+    color: $black-color;
+    opacity: 1;
+  }
+
+  &-name {
+    @extend .form-element;
+    width: 11.5rem;
+    margin-right: 1em;
+  }
+
+  &-email {
+    @extend .form-element;
+    width: 11.5rem;
+  }
+
+  &-subject {
+    @extend .form-element;
+    width: 100%;
+  }
+
+  &-message {
+    @extend .form-element;
+    resize: none;
+    font-family: $main-font;
+  }
+
+  &:hover {
+    border-bottom: $black-color solid 3px;
+  }
+}
+
+.contact-info {
+  @include flex(space-between);
+}
+
 /***** LAYOUT *****/
 .contact-page {
   @include page-container-layout;
 }
 
 /***** MEDIA QUERIES *****/
+
+// under 600px in width
+@media (max-width: $layout-breakpoint-small) {
+  .contact-page {
+    padding-top: 3.1em;
+  }
+}
+
+//under 450px in width
+@media (max-width: $layout-breakpoint-phone) {
+  .contact-form {
+    @include flex(normal, column);
+    margin: 0 auto;
+    width: 18rem;
+  }
+
+  .form-element-name {
+    margin-right: 0em;
+    width: 18rem;
+  }
+
+  .form-element-email {
+    width: 18rem;
+  }
+
+  .contact-info {
+    @include flex(normal, column);
+  }
+}
