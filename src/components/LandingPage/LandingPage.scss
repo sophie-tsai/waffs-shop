@@ -39,6 +39,11 @@
 .intro-button-accent {
   @include button($white-color, $black-color, $black-color);
 
+  &-link {
+    color: inherit;
+    text-decoration: none;
+  }
+
   &:hover {
     @include button($black-color, $white-color, $black-color);
   }

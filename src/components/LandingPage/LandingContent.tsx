@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { Link } from "react-router-dom";
 import wafflesSmiling from "../../assets/waffles-smiling.jpg";
 
 const LandingContent: FC = () => {
@@ -11,7 +12,11 @@ const LandingContent: FC = () => {
         </h2>
       </div>
       <div className="intro-div-button">
-        <button className="intro-button-accent">shop my merch</button>
+        <button className="intro-button-accent">
+          <Link to="/shop" className="intro-button-accent-link">
+            shop my merch
+          </Link>
+        </button>
       </div>
       <div className="intro-div-img">
         <img

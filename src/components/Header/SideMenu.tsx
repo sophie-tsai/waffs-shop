@@ -5,10 +5,11 @@ import { Link } from "react-router-dom";
 type SideMenuProps = {
   width: number;
   isOpen: boolean;
+  toggleSideMenu: () => void;
 };
 
 function SideMenu(props: SideMenuProps) {
-  const { width, isOpen } = props;
+  const { width, isOpen, toggleSideMenu } = props;
   const [menuGap, setMenuGap] = useState("5");
 
   const styles = {
@@ -27,22 +28,22 @@ function SideMenu(props: SideMenuProps) {
 
   return (
     <Menu noOverlay customBurgerIcon={false} isOpen={isOpen} styles={styles}>
-      <Link to="/" className="menu-item">
+      <Link to="/" className="menu-item" onClick={toggleSideMenu}>
         HOME
       </Link>
-      <Link to="/shop" className="menu-item">
+      <Link to="/shop" className="menu-item" onClick={toggleSideMenu}>
         SHOP
       </Link>
-      <Link to="/about" className="menu-item">
+      <Link to="/about" className="menu-item" onClick={toggleSideMenu}>
         ABOUT
       </Link>
-      <Link to="/contact" className="menu-item">
+      <Link to="/contact" className="menu-item" onClick={toggleSideMenu}>
         CONTACT
       </Link>
-      <Link to="/faq" className="menu-item">
+      <Link to="/faq" className="menu-item" onClick={toggleSideMenu}>
         FAQ
       </Link>
-      <Link to="/cart" className="menu-item">
+      <Link to="/cart" className="menu-item" onClick={toggleSideMenu}>
         CART
       </Link>
     </Menu>
