@@ -29,22 +29,22 @@ function SideMenu(props: SideMenuProps) {
   return (
     <Menu noOverlay customBurgerIcon={false} isOpen={isOpen} styles={styles}>
       <Link to="/" className="menu-item" onClick={toggleSideMenu}>
-        HOME
+        home
       </Link>
       <Link to="/shop" className="menu-item" onClick={toggleSideMenu}>
-        SHOP
+        shop
       </Link>
       <Link to="/about" className="menu-item" onClick={toggleSideMenu}>
-        ABOUT
+        about
       </Link>
       <Link to="/contact" className="menu-item" onClick={toggleSideMenu}>
-        CONTACT
+        contact
       </Link>
       <Link to="/faq" className="menu-item" onClick={toggleSideMenu}>
-        FAQ
+        faq
       </Link>
       <Link to="/cart" className="menu-item" onClick={toggleSideMenu}>
-        CART
+        cart
       </Link>
     </Menu>
   );

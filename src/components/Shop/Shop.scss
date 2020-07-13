@@ -1,6 +1,10 @@
 @import "../../scss/library";
 
 /***** TYPOGRAPHY *****/
+.shop-headline {
+  @include headline;
+  text-align: center;
+}
 
 /***** IMGS *****/
 
@@ -9,6 +13,7 @@
 /***** LAYOUT *****/
 .shop-page {
   @include page-container-layout;
+  padding: 8em 3em;
 }
 
 /***** MEDIA QUERIES *****/

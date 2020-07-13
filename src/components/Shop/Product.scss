@@ -1,0 +1,40 @@
+@import "../../scss/library";
+
+/***** TYPOGRAPHY *****/
+.product {
+  text-align: center;
+  margin-bottom: 0;
+
+  &-title {
+    @extend .product;
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  &-price {
+    @extend .product;
+    font-weight: 600;
+    font-size: 1.25rem;
+    margin-top: 0.75rem;
+  }
+}
+
+/***** IMGS *****/
+.product-thumbnail {
+  width: 100%;
+  object-fit: cover;
+}
+
+/***** BUTTON *****/
+
+/***** LAYOUT *****/
+.product-container {
+  padding: 2.5em;
+  display: inline-block;
+  width: 40%;
+  min-width: 15rem;
+  max-width: 25rem;
+}
+
+/***** MEDIA QUERIES *****/

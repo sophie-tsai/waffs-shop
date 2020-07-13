@@ -19,25 +19,25 @@ function FullMenu(props: FullMenuProps) {
         className="nav-icon"
         onClick={toggleSideMenu}
       />
-      <h1 className="header-title">CORGOWAFFLES</h1>
+      <h1 className="header-title">corgowaffles</h1>
       <nav className="nav-bar">
         <Link to="/" className="nav-item current-page">
-          HOME
+          home
         </Link>
         <Link to="/shop" className="nav-item">
-          SHOP
+          shop
         </Link>
         <Link to="/about" className="nav-item">
-          ABOUT
+          about
         </Link>
         <Link to="/contact" className="nav-item">
-          CONTACT
+          contact
         </Link>
         <Link to="/faq" className="nav-item">
-          FAQ
+          faq
         </Link>
         <Link to="/cart" className="nav-item">
-          CART
+          cart
         </Link>
       </nav>
       <Link to="/cart" className="nav-icon">
