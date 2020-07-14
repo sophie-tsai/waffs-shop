@@ -5,15 +5,25 @@ import { GET_PRODUCTS } from "../../graphql/get-products";
 import Product from "./Product";
 
 function Shop() {
-  const { data: shopData } = useQuery(GET_PRODUCTS);
-  console.log(shopData);
+  const { loading, data: shopData, error } = useQuery(GET_PRODUCTS);
+  let displayProducts: any;
+
+  if (!loading && shopData) {
+    const { edges: productNodes } = shopData.shop.products;
+    // console.log(productNodes);
+    displayProducts = productNodes.map((product: any) => (
+      <Product
+        key={product.node.id}
+        productTitle={product.node.title}
+        productImage={product.node.images.edges[0].node.src}
+      />
+    ));
+  }
 
   return (
     <div className="shop-page">
       <h1 className="shop-headline">shop the collection</h1>
-      <section>
-        <Product />
-      </section>
+      <section>{displayProducts}</section>
     </div>
   );
 }
