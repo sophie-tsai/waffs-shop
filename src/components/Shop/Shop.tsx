@@ -1,7 +1,7 @@
 import React from "react";
 import "./Shop.scss";
 import { useQuery } from "@apollo/react-hooks";
-import { GET_PRODUCTS } from "../../graphql/get-products";
+import { GET_PRODUCTS } from "../../graphql/product-queries";
 import Product from "./Product";
 
 function Shop() {
@@ -16,6 +16,7 @@ function Shop() {
         key={product.node.id}
         productTitle={product.node.title}
         productImage={product.node.images.edges[0].node.src}
+        id={product.node.id}
       />
     ));
   }

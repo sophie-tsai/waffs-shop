@@ -48,3 +48,32 @@ export const GET_PRODUCTS = gql`
     }
   }
 `;
+
+export const GET_PRODUCT = gql`
+  query query {
+    shop {
+      name
+      description
+    }
+    product(id: "Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzU0Mzc2MDk4MzY2OTM=") {
+      title
+      totalInventory
+      description
+      totalVariants
+      variants(first: 2) {
+        edges {
+          node {
+            id
+          }
+        }
+      }
+      images(first: 2) {
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  }
+`;

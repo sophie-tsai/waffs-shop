@@ -8,15 +8,9 @@
   &-title {
     @extend .product;
     font-weight: 700;
-    font-size: 1.3rem;
-    margin-top: 1rem;
-  }
-
-  &-price {
-    @extend .product;
-    font-weight: 600;
     font-size: 1.25rem;
-    margin-top: 0.75rem;
+    margin-top: 1rem;
+    color: $black-color;
   }
 }
 
@@ -30,11 +24,20 @@
 
 /***** LAYOUT *****/
 .product-container {
-  padding: 2.5em;
+  padding: 2em;
   display: inline-block;
-  width: 40%;
-  min-width: 15rem;
-  max-width: 25rem;
+  width: 33%;
 }
 
 /***** MEDIA QUERIES *****/
+
+// under 900px in width
+@media (max-width: $layout-breakpoint-medium) {
+  .product-title {
+    font-size: 1rem;
+  }
+
+  .product-container {
+    width: 50%;
+  }
+}
