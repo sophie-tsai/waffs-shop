@@ -1,0 +1,15 @@
+@import "../../scss/library";
+
+/***** TYPOGRAPHY *****/
+
+/***** IMGS *****/
+
+/***** BUTTON *****/
+
+/***** LAYOUT *****/
+.product-page {
+  @include page-container-layout;
+  padding: 8em 3em;
+}
+
+/***** MEDIA QUERIES *****/

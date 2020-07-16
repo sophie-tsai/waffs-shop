@@ -18,8 +18,8 @@ function Product(props: ProductProps) {
   const defaultProductTitle = "original waffles sticker";
 
   return (
-    <Link to={`/shop/${id}`}>
-      <div className="product-container">
+    <div className="product-container">
+      <Link to={`/shop/${id}`} className="product-link">
         <img
           src={productImage || defaultProductImage}
           className="product-thumbnail"
@@ -27,8 +27,8 @@ function Product(props: ProductProps) {
         <p className="product-title">
           {productTitle.toLocaleLowerCase() || defaultProductTitle}
         </p>
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 }
 

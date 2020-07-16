@@ -1,6 +1,6 @@
 import React from "react";
 import "./Header.scss";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
@@ -10,6 +10,13 @@ type FullMenuProps = {
 
 function FullMenu(props: FullMenuProps) {
   const { toggleSideMenu } = props;
+
+  let location = useLocation();
+
+  const isCurrentPage = (page: String): Boolean => {
+    if (page === location.pathname) return true;
+    return false;
+  };
 
   return (
     <div className="header">
@@ -21,22 +28,40 @@ function FullMenu(props: FullMenuProps) {
       />
       <h1 className="header-title">corgowaffles</h1>
       <nav className="nav-bar">
-        <Link to="/" className="nav-item current-page">
+        <Link
+          to="/"
+          className={`nav-item ${isCurrentPage("/") && "current-page"}`}
+        >
           home
         </Link>
-        <Link to="/shop" className="nav-item">
+        <Link
+          to="/shop"
+          className={`nav-item ${isCurrentPage("/shop") && "current-page"}`}
+        >
           shop
         </Link>
-        <Link to="/about" className="nav-item">
+        <Link
+          to="/about"
+          className={`nav-item ${isCurrentPage("/about") && "current-page"}`}
+        >
           about
         </Link>
-        <Link to="/contact" className="nav-item">
+        <Link
+          to="/contact"
+          className={`nav-item ${isCurrentPage("/contact") && "current-page"}`}
+        >
           contact
         </Link>
-        <Link to="/faq" className="nav-item">
+        <Link
+          to="/faq"
+          className={`nav-item ${isCurrentPage("/faq") && "current-page"}`}
+        >
           faq
         </Link>
-        <Link to="/cart" className="nav-item">
+        <Link
+          to="/cart"
+          className={`nav-item ${isCurrentPage("/cart") && "current-page"}`}
+        >
           cart
         </Link>
       </nav>

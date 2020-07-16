@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 
 export const GET_PRODUCTS = gql`
-  query query {
+  query products {
     shop {
       name
       description
@@ -50,27 +50,29 @@ export const GET_PRODUCTS = gql`
 `;
 
 export const GET_PRODUCT = gql`
-  query query {
-    shop {
-      name
-      description
-    }
-    product(id: "Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzU0Mzc2MDk4MzY2OTM=") {
-      title
-      totalInventory
-      description
-      totalVariants
-      variants(first: 2) {
-        edges {
-          node {
-            id
+  query product($id: ID!) {
+    node(id: $id) {
+      ... on Product {
+        title
+        description
+        images(first: 2) {
+          edges {
+            node {
+              id
+            }
           }
         }
-      }
-      images(first: 2) {
-        edges {
-          node {
-            id
+        variants(first: 2) {
+          edges {
+            node {
+              id
+              image {
+                id
+                originalSrc
+              }
+              title
+              availableForSale
+            }
           }
         }
       }

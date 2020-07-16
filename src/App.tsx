@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-import { Switch, Route, useParams } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import LandingPage from "./components/LandingPage/LandingPage";
 import Shop from "./components/Shop/Shop";
 import ProductPage from "./components/ProductPage/ProductPage";

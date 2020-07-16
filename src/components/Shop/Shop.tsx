@@ -8,9 +8,9 @@ function Shop() {
   const { loading, data: shopData, error } = useQuery(GET_PRODUCTS);
   let displayProducts: any;
 
-  if (!loading && shopData) {
+  if (!loading && !error) {
     const { edges: productNodes } = shopData.shop.products;
-    // console.log(productNodes);
+
     displayProducts = productNodes.map((product: any) => (
       <Product
         key={product.node.id}

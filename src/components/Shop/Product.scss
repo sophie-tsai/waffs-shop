@@ -10,7 +10,12 @@
     font-weight: 700;
     font-size: 1.25rem;
     margin-top: 1rem;
+  }
+
+  &-link {
+    @extend .product;
     color: $black-color;
+    text-decoration: none;
   }
 }
 
