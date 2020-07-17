@@ -7,6 +7,7 @@ import Product from "./Product";
 function Shop() {
   const { loading, data: shopData, error } = useQuery(GET_PRODUCTS);
   let displayProducts: any;
+  // console.log(loading, shopData, error);
 
   if (!loading && !error) {
     const { edges: productNodes } = shopData.shop.products;
@@ -17,6 +18,7 @@ function Shop() {
         productTitle={product.node.title}
         productImage={product.node.images.edges[0].node.src}
         id={product.node.id}
+        altText={product.node.images.edges[0].node.altText}
       />
     ));
   }
@@ -24,7 +26,15 @@ function Shop() {
   return (
     <div className="shop-page">
       <h1 className="shop-headline">shop the collection</h1>
-      <section>{displayProducts}</section>
+      <section>
+        {error ? (
+          <p className="error-message">
+            oops, there was an error, please try again
+          </p>
+        ) : (
+          displayProducts
+        )}
+      </section>
     </div>
   );
 }

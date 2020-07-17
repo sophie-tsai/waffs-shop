@@ -26,6 +26,7 @@ export const GET_PRODUCTS = gql`
                   }
                   image {
                     src
+                    altText
                   }
                   price
                 }
@@ -59,6 +60,8 @@ export const GET_PRODUCT = gql`
           edges {
             node {
               id
+              originalSrc
+              altText
             }
           }
         }

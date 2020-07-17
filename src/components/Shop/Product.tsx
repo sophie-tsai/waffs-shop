@@ -5,13 +5,13 @@ import "./Product.scss";
 type ProductProps = {
   key?: string;
   productImage?: string;
-
+  altText?: string;
   productTitle: string;
   id: string;
 };
 
 function Product(props: ProductProps) {
-  const { productTitle, productImage, id } = props;
+  const { productTitle, productImage, id, altText } = props;
 
   const defaultProductImage =
     "https://pbs.twimg.com/media/EWiqBdYUMAA2KZv?format=jpg&name=large";
@@ -23,6 +23,7 @@ function Product(props: ProductProps) {
         <img
           src={productImage || defaultProductImage}
           className="product-thumbnail"
+          alt={altText}
         />
         <p className="product-title">
           {productTitle.toLocaleLowerCase() || defaultProductTitle}
