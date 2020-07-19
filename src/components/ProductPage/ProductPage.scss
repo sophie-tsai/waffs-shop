@@ -110,3 +110,29 @@ select {
 }
 
 /***** MEDIA QUERIES *****/
+
+// under 900px in width
+@media (max-width: $layout-breakpoint-medium) {
+  .product-page {
+    padding: 8em 3em;
+  }
+}
+
+// under 600px in width
+@media (max-width: $layout-breakpoint-small) {
+  .product-page {
+    padding: 6em 3em 2em;
+  }
+
+  .product-page-container-section {
+    @include flex(normal, column);
+    width: 100%;
+    padding: 2em 4em;
+  }
+
+  .product-page-container-img,
+  .product-page-container-info {
+    width: 100%;
+    margin-bottom: 1.5em;
+  }
+}

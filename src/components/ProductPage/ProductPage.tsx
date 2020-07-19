@@ -17,6 +17,7 @@ function ProductPage() {
     | { node: { price: string; image: { originalSrc: string } } }[]
     | any;
   let productDescription: string | undefined;
+  let singleVariantPrice: string | undefined;
 
   const { loading, data: productData, error } = useQuery(GET_PRODUCT, {
     variables: { id },
@@ -31,6 +32,7 @@ function ProductPage() {
     };
     productVariants = productData.node.variants.edges;
     productDescription = productData.node.description;
+    singleVariantPrice = productData.node.variants.edges[0].node.price;
 
     if (!featuredImage) setFeaturedImage(productImage.image);
   }
@@ -85,7 +87,12 @@ function ProductPage() {
         </div>
         <div className="product-page-container-info">
           <p className="product-page-info-title">{productTitle}</p>
-          <p className="product-page-price">{price && `$${price}`}</p>
+          {productVariants &&
+            (productVariants.length > 1 ? (
+              <p className="product-page-price">{price && `$${price}`}</p>
+            ) : (
+              <p className="product-page-price">{singleVariantPrice}</p>
+            ))}
 
           {productVariants && productVariants.length > 1 && (
             <>
