@@ -33,9 +33,16 @@
 .product-page-price {
   font-weight: 600;
   font-size: 1.2rem;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1.2em;
 }
 
+.product-page-description {
+  &-label {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.5em;
+  }
+}
 /***** IMGS *****/
 
 .product-page-img {
@@ -48,6 +55,7 @@
   @include button($white-color, $accent-color, $accent-color);
   display: inline-block;
   width: 100%;
+  margin-bottom: 1em;
 }
 
 /***** FORM *****/
@@ -78,7 +86,7 @@ select {
 /***** LAYOUT *****/
 .product-page {
   @include page-container-layout;
-  padding: 8em 8em;
+  padding: 8em 7em;
 }
 
 .product-page-container {

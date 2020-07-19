@@ -8,11 +8,15 @@ function ProductPage() {
   const [variant, setVariant] = useState("");
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("1");
+  const [featuredImage, setFeaturedImage] = useState("");
 
   const { id } = useParams();
   let productTitle: string | undefined;
   let productImage: { image: string; altText: string } | undefined;
-  let productVariants: { node: {} }[] | any;
+  let productVariants:
+    | { node: { price: string; image: { originalSrc: string } } }[]
+    | any;
+  let productDescription: string | undefined;
 
   const { loading, data: productData, error } = useQuery(GET_PRODUCT, {
     variables: { id },
@@ -26,6 +30,9 @@ function ProductPage() {
       altText: productData.node.images.edges[0].node.altText,
     };
     productVariants = productData.node.variants.edges;
+    productDescription = productData.node.description;
+
+    if (!featuredImage) setFeaturedImage(productImage.image);
   }
 
   const selectVariantOption = productVariants?.map((variant: any) => (
@@ -45,11 +52,12 @@ function ProductPage() {
   useEffect(() => {
     if (variant) {
       let currentVariant: {
-        node: { price: string };
+        node: { price: string; image: { originalSrc: string } };
       }[] = productVariants.filter(
         (variantNode: any) => variant === variantNode.node.title
       );
       setPrice(currentVariant[0].node.price);
+      setFeaturedImage(currentVariant[0].node.image.originalSrc);
     }
   }, [variant]);
 
@@ -70,14 +78,14 @@ function ProductPage() {
       <section className="product-page-container-section">
         <div className="product-page-container-img">
           <img
-            src={productImage?.image}
+            src={featuredImage}
             alt={productImage?.altText}
             className="product-page-img"
           />
         </div>
         <div className="product-page-container-info">
           <p className="product-page-info-title">{productTitle}</p>
-          <p className="product-page-price">{price && `$ ${price}`}</p>
+          <p className="product-page-price">{price && `$${price}`}</p>
 
           {productVariants && productVariants.length > 1 && (
             <>
@@ -98,6 +106,8 @@ function ProductPage() {
             onChange={handleQuantityChange}
           />
           <button className="product-page-add-cart">add to cart</button>
+          <p className="product-page-description-label">product details</p>
+          <p className="product-page-description">{productDescription}</p>
         </div>
       </section>
     </div>
