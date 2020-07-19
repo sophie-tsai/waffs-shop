@@ -35,7 +35,7 @@ const Header: FC = () => {
 
   return (
     <>
-      <FullMenu toggleSideMenu={toggleSideMenu} />
+      <FullMenu toggleSideMenu={toggleSideMenu} isOpen={isOpen} />
       <SideMenu width={width} isOpen={isOpen} toggleSideMenu={toggleSideMenu} />
     </>
   );

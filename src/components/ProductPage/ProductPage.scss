@@ -7,6 +7,8 @@
   margin-bottom: 4rem;
   font-weight: 600;
   color: $gray-color;
+  max-width: 60rem;
+  margin: 0 auto 2em;
 
   &-link {
     @extend .product-page-nav;
@@ -18,8 +20,20 @@
 .product-page-info-title {
   font-weight: 800;
   letter-spacing: 0.3px;
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   margin: 0;
+  margin-bottom: 1.2em;
+}
+
+.product-page-label {
+  margin: 0 0 0.5em;
+  font-weight: 400;
+}
+
+.product-page-price {
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-bottom: 1.2rem;
 }
 
 /***** IMGS *****/
@@ -30,11 +44,41 @@
 
 /***** BUTTON *****/
 
+.product-page-add-cart {
+  @include button($white-color, $accent-color, $accent-color);
+  display: inline-block;
+  width: 100%;
+}
+
+/***** FORM *****/
+
+select {
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  padding: 0.75em 1em;
+  font-size: 1rem;
+  border: 1px solid $gray-color;
+  outline: none;
+  width: 100%;
+  font-family: inherit;
+  cursor: pointer;
+  margin-bottom: 1.2em;
+}
+
+.product-page-quantity-input {
+  padding: 0.75em 1em;
+  width: 50%;
+  min-width: 4rem;
+  max-width: 6rem;
+  outline: none;
+  border: 1px solid $gray-color;
+  margin-bottom: 2em;
+}
+
 /***** LAYOUT *****/
 .product-page {
   @include page-container-layout;
-
-  padding: 8em 7em;
+  padding: 8em 8em;
 }
 
 .product-page-container {
@@ -42,14 +86,17 @@
     @include flex(space-between);
     width: 100%;
     padding: 0;
+
+    max-width: 60rem;
+    margin: 0 auto;
   }
 
   &-img {
-    width: 45%;
+    width: 55%;
   }
 
   &-info {
-    width: 50%;
+    width: 40%;
     text-align: left;
   }
 }

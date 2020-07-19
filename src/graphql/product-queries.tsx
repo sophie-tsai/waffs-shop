@@ -75,6 +75,7 @@ export const GET_PRODUCT = gql`
               }
               title
               availableForSale
+              price
             }
           }
         }

@@ -22,7 +22,7 @@
   @include flex(space-between);
   padding: $layout-padding;
   width: 100%;
-  align-items: baseline;
+  align-items: center;
   position: fixed;
   padding-bottom: 1rem;
   background: $primary-color;
@@ -39,8 +39,13 @@
 .nav-icon {
   color: $black-color;
   display: none;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   cursor: pointer;
+  width: 22px;
+
+  &-dynamic {
+    @extend .nav-icon;
+  }
 }
 
 /***** SIDE MENU *****/

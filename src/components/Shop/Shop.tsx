@@ -1,13 +1,13 @@
 import React from "react";
 import "./Shop.scss";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import { GET_PRODUCTS } from "../../graphql/product-queries";
 import Product from "./Product";
 
 function Shop() {
   const { loading, data: shopData, error } = useQuery(GET_PRODUCTS);
   let displayProducts: any;
-  // console.log(loading, shopData, error);
+  console.log(error);
 
   if (!loading && !error) {
     const { edges: productNodes } = shopData.shop.products;

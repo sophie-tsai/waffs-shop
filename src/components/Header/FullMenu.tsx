@@ -2,14 +2,19 @@ import React from "react";
 import "./Header.scss";
 import { Link, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBars,
+  faShoppingCart,
+  faTimes,
+} from "@fortawesome/free-solid-svg-icons";
 
 type FullMenuProps = {
   toggleSideMenu: () => void;
+  isOpen: boolean;
 };
 
 function FullMenu(props: FullMenuProps) {
-  const { toggleSideMenu } = props;
+  const { toggleSideMenu, isOpen } = props;
 
   let location = useLocation();
 
@@ -21,9 +26,9 @@ function FullMenu(props: FullMenuProps) {
   return (
     <div className="header">
       <FontAwesomeIcon
-        icon={faBars}
-        size="2x"
-        className="nav-icon"
+        icon={isOpen ? faTimes : faBars}
+        style={{ width: "22px" }}
+        className="nav-icon-dynamic"
         onClick={toggleSideMenu}
       />
       <h1 className="header-title">corgowaffles</h1>
