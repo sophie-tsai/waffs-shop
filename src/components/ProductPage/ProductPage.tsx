@@ -3,6 +3,7 @@ import "./ProductPage.scss";
 import { useParams, Link } from "react-router-dom";
 import { GET_PRODUCT } from "../../graphql/product-queries";
 import { useQuery } from "@apollo/client";
+import ProductImageZoom from "./ProductImageZoom";
 
 function ProductPage() {
   const [variant, setVariant] = useState("");
@@ -64,60 +65,63 @@ function ProductPage() {
   }, [variant]);
 
   return (
-    <div className="product-page">
-      <div className="product-page-nav">
-        <p>
-          <Link to="/" className="product-page-nav-link">
-            home
-          </Link>{" "}
-          /{" "}
-          <Link to="/shop" className="product-page-nav-link">
-            shop
-          </Link>{" "}
-          / {productTitle}
-        </p>
+    <>
+      <div className="product-page">
+        <div className="product-page-nav">
+          <p>
+            <Link to="/" className="product-page-nav-link">
+              home
+            </Link>{" "}
+            /{" "}
+            <Link to="/shop" className="product-page-nav-link">
+              shop
+            </Link>{" "}
+            / {productTitle}
+          </p>
+        </div>
+        <section className="product-page-container-section">
+          <div className="product-page-container-img">
+            <ProductImageZoom
+              imgSrc={featuredImage}
+              altText={productImage?.altText}
+            />
+          </div>
+
+          <div className="product-page-container-info">
+            <p className="product-page-info-title">{productTitle}</p>
+            {productVariants &&
+              (productVariants.length > 1 ? (
+                <p className="product-page-price">{price && `$${price}`}</p>
+              ) : (
+                <p className="product-page-price">{singleVariantPrice}</p>
+              ))}
+
+            {productVariants && productVariants.length > 1 && (
+              <>
+                <p className="product-page-label">style</p>
+                <select onChange={handleDropDown}>
+                  <option value="">please choose an option</option>
+                  {selectVariantOption}
+                </select>
+              </>
+            )}
+
+            <p className="product-page-label">quantity</p>
+            <input
+              type="number"
+              min="1"
+              value={quantity}
+              className="product-page-quantity-input"
+              onChange={handleQuantityChange}
+            />
+            <button className="product-page-add-cart">add to cart</button>
+            <p className="product-page-description-label">product details</p>
+            <p className="product-page-description">{productDescription}</p>
+          </div>
+        </section>
       </div>
-      <section className="product-page-container-section">
-        <div className="product-page-container-img">
-          <img
-            src={featuredImage}
-            alt={productImage?.altText}
-            className="product-page-img"
-          />
-        </div>
-        <div className="product-page-container-info">
-          <p className="product-page-info-title">{productTitle}</p>
-          {productVariants &&
-            (productVariants.length > 1 ? (
-              <p className="product-page-price">{price && `$${price}`}</p>
-            ) : (
-              <p className="product-page-price">{singleVariantPrice}</p>
-            ))}
-
-          {productVariants && productVariants.length > 1 && (
-            <>
-              <p className="product-page-label">style</p>
-              <select onChange={handleDropDown}>
-                <option value="">please choose an option</option>
-                {selectVariantOption}
-              </select>
-            </>
-          )}
-
-          <p className="product-page-label">quantity</p>
-          <input
-            type="number"
-            min="1"
-            value={quantity}
-            className="product-page-quantity-input"
-            onChange={handleQuantityChange}
-          />
-          <button className="product-page-add-cart">add to cart</button>
-          <p className="product-page-description-label">product details</p>
-          <p className="product-page-description">{productDescription}</p>
-        </div>
-      </section>
-    </div>
+      <hr className="theme-horizontal-bar" />
+    </>
   );
 }
 

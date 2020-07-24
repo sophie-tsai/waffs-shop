@@ -1,5 +1,6 @@
 import React from "react";
 import "./Shop.scss";
+import "../LandingPage/LandingPage.scss";
 import { useQuery } from "@apollo/client";
 import { GET_PRODUCTS } from "../../graphql/product-queries";
 import Product from "./Product";
@@ -7,7 +8,8 @@ import Product from "./Product";
 function Shop() {
   const { loading, data: shopData, error } = useQuery(GET_PRODUCTS);
   let displayProducts: any;
-  console.log(error);
+  // console.log(error);
+  console.log(shopData);
 
   if (!loading && !error) {
     const { edges: productNodes } = shopData.shop.products;
@@ -24,18 +26,21 @@ function Shop() {
   }
 
   return (
-    <div className="shop-page">
-      <h1 className="shop-headline">shop the collection</h1>
-      <section>
-        {error ? (
-          <p className="error-message">
-            oops, there was an error, please try again
-          </p>
-        ) : (
-          displayProducts
-        )}
-      </section>
-    </div>
+    <>
+      <div className="shop-page">
+        <h1 className="shop-headline">shop the collection</h1>
+        <section className="shop-container">
+          {error ? (
+            <p className="error-message">
+              oops, there was an error, please try again
+            </p>
+          ) : (
+            displayProducts
+          )}
+        </section>
+      </div>
+      <hr className="theme-horizontal-bar" />
+    </>
   );
 }
 

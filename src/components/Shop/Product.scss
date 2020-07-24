@@ -35,6 +35,9 @@
   width: 33%;
 }
 
+.shop-container {
+  text-align: center;
+}
 /***** MEDIA QUERIES *****/
 
 // under 900px in width
@@ -45,5 +48,25 @@
 
   .product-container {
     width: 50%;
+    padding: 1em;
+  }
+}
+
+// under 600px in width
+@media (max-width: $layout-breakpoint-small) {
+  .product-title {
+    font-size: 1rem;
+  }
+
+  .product-container {
+    width: 50%;
+  }
+}
+
+// under 450px in width
+@media (max-width: $layout-breakpoint-phone) {
+  .product-container {
+    width: 75%;
+    margin-bottom: 2.5em;
   }
 }

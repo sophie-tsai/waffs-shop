@@ -88,6 +88,13 @@
 
 /***** MEDIA QUERIES *****/
 
+// under 900px in width
+@media (max-width: $layout-breakpoint-medium) {
+  .contact-headline {
+    font-size: 2.5rem;
+  }
+}
+
 // under 600px in width
 @media (max-width: $layout-breakpoint-small) {
   .contact-page {
@@ -114,5 +121,9 @@
 
   .contact-info {
     @include flex(normal, column);
+  }
+
+  .contact-headline {
+    font-size: 2rem;
   }
 }

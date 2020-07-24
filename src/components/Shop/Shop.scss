@@ -24,3 +24,28 @@
 }
 
 /***** MEDIA QUERIES *****/
+
+// under 900px in width
+@media (max-width: $layout-breakpoint-medium) {
+  .shop-headline {
+    font-size: 2.5rem;
+  }
+}
+
+// under 600px in width
+@media (max-width: $layout-breakpoint-small) {
+  .shop-page {
+    padding: 8em 1.5em;
+  }
+}
+
+// under 450px in width
+@media (max-width: $layout-breakpoint-phone) {
+  .shop-page {
+    padding: 8em 1.5em 2em;
+  }
+
+  .shop-headline {
+    font-size: 2rem;
+  }
+}
