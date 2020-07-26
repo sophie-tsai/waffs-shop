@@ -81,10 +81,12 @@ function ProductPage() {
         </div>
         <section className="product-page-container-section">
           <div className="product-page-container-img">
-            <ProductImageZoom
-              imgSrc={featuredImage}
-              altText={productImage?.altText}
-            />
+            {featuredImage && (
+              <ProductImageZoom
+                imgSrc={featuredImage}
+                altText={productImage?.altText}
+              />
+            )}
           </div>
 
           <div className="product-page-container-info">

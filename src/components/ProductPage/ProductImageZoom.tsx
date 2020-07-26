@@ -12,7 +12,7 @@ function ProductImageZoom(props: ProductImageProps) {
   const style = {
     backgroundImage: `url(${imgSrc})`,
     backgroundPosition: `${backgroundPosition}`,
-    backgroundSize: "175%",
+    backgroundSize: "150%",
     cursor: `zoom-in`,
   };
 

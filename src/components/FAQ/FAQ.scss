@@ -2,6 +2,34 @@
 
 /***** TYPOGRAPHY *****/
 
+.faq {
+  line-height: 2.25em;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  &-question {
+    @extend .faq;
+    margin-top: 2.25em;
+  }
+  &-answer {
+    @extend .faq;
+    font-size: 1rem;
+    padding-bottom: 2.25em;
+    margin: 0;
+  }
+
+  &-question-answer {
+    border-bottom: 1px solid $gray-color;
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
+
+.faq-headline {
+  @include headline;
+}
+
 /***** IMGS *****/
 
 /***** BUTTON *****/
@@ -11,4 +39,13 @@
   @include page-container-layout;
 }
 
+.faq-div {
+  @include intro-section-center;
+  &-headline {
+    @extend .faq-div;
+  }
+  &-copy {
+    @extend .faq-div;
+  }
+}
 /***** MEDIA QUERIES *****/

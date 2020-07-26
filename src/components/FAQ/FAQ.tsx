@@ -1,12 +1,20 @@
-import React from "react";
+import React, { FC } from "react";
+import SplitSection from "../layout/SplitSection";
 import "./FAQ.scss";
+import wafflesMeditate from "../../assets/waffles-meditate.jpg";
+import FAQContent from "./FAQContent";
 
-function FAQ() {
+const FAQ: FC = () => {
   return (
     <div className="faq-page">
-      <h1>FAQ Page</h1>
+      <SplitSection
+        page="faq"
+        img={wafflesMeditate}
+        imgAlt="Waffles on the beach with stones"
+        childComp={<FAQContent />}
+      />
     </div>
   );
-}
+};
 
 export default FAQ;

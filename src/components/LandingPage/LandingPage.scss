@@ -27,6 +27,12 @@
     height: 100vh;
     object-position: 50% 100%;
   }
+
+  &-faq {
+    @extend .main-img;
+    height: 100vh;
+    object-position: 50% 50%;
+  }
 }
 
 .intro-secondary-img {
