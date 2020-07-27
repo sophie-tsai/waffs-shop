@@ -13,7 +13,7 @@ function ProductPage() {
 
   const { id } = useParams();
   let productTitle: string | undefined;
-  let productImage: { image: string; altText: string } | undefined;
+  let productImage: { image: string; altText: string; id: any } | undefined;
   let productVariants:
     | { node: { price: string; image: { originalSrc: string } } }[]
     | any;
@@ -30,6 +30,7 @@ function ProductPage() {
     productImage = {
       image: productData.node.images.edges[0].node.originalSrc,
       altText: productData.node.images.edges[0].node.altText,
+      id: productData.node.images.edges[0].node.id,
     };
     productVariants = productData.node.variants.edges;
     productDescription = productData.node.description;
@@ -85,6 +86,7 @@ function ProductPage() {
               <ProductImageZoom
                 imgSrc={featuredImage}
                 altText={productImage?.altText}
+                id={productImage?.id}
               />
             )}
           </div>

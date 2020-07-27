@@ -2,6 +2,12 @@
 
 /***** TYPOGRAPHY *****/
 
+.cart-headline {
+  @include headline;
+  text-align: center;
+  margin-bottom: 1em;
+}
+
 /***** IMGS *****/
 
 /***** BUTTON *****/
@@ -9,6 +15,29 @@
 /***** LAYOUT *****/
 .cart-page {
   @include page-container-layout;
+  padding: 8em 3em;
+}
+
+.cart-page-container-section {
+  @include flex(space-between, row);
+  max-width: 50rem;
+  margin: 0 auto;
+}
+
+.section {
+  &-cart {
+    width: 60%;
+  }
+
+  &-order {
+    width: 35%;
+  }
+}
+
+/***** MISC *****/
+
+.hr-gray {
+  color: $gray-color;
 }
 
 /***** MEDIA QUERIES *****/

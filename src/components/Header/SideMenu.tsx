@@ -22,8 +22,8 @@ function SideMenu(props: SideMenuProps) {
   };
 
   useEffect(() => {
-    if (width < 600) setMenuGap("4.5");
-    if (width < 450) setMenuGap("4");
+    if (width <= 600) setMenuGap("4.5");
+    if (width <= 450) setMenuGap("4");
   }, [width]);
 
   return (
