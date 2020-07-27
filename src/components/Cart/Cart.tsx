@@ -1,7 +1,10 @@
 import React from "react";
 import "./Cart.scss";
+import { useSelector } from "react-redux";
 
 function Cart() {
+  const cart = useSelector((state) => state);
+  console.log(cart);
   return (
     <div className="cart-page">
       <section className="cart-page-container-section">

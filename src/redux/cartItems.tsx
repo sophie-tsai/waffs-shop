@@ -2,10 +2,20 @@ const cartState = {
   items: [],
 };
 
-export function addItem(id: string) {
+type AddItemProps = {
+  id: string;
+  imgSrc: string;
+  productTitle: string | undefined;
+  type: string;
+  quantity: string;
+  price: string;
+};
+
+export function addItem(props: AddItemProps) {
+  const { id, imgSrc, productTitle, type, quantity, price } = props;
   return {
     type: "ADD_ITEM",
-    payload: id,
+    payload: { id, imgSrc, productTitle, type, quantity, price },
   };
 }
 

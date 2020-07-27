@@ -1,14 +1,14 @@
-import React, { useState, useEffect, ChangeEvent } from "react";
+import React, { useState, useEffect } from "react";
 import "./ProductPage.scss";
 import { useParams, Link } from "react-router-dom";
 import { GET_PRODUCT } from "../../graphql/product-queries";
 import { useQuery } from "@apollo/client";
 import ProductImageZoom from "./ProductImageZoom";
+import ProductDetails from "./ProductDetails";
 
 function ProductPage() {
   const [variant, setVariant] = useState("");
   const [price, setPrice] = useState("");
-  const [quantity, setQuantity] = useState("1");
   const [featuredImage, setFeaturedImage] = useState("");
 
   const { id } = useParams();
@@ -38,20 +38,6 @@ function ProductPage() {
 
     if (!featuredImage) setFeaturedImage(productImage.image);
   }
-
-  const selectVariantOption = productVariants?.map((variant: any) => (
-    <option key={variant.node.id}>{variant.node.title}</option>
-  ));
-
-  const handleDropDown = (event: ChangeEvent<HTMLSelectElement>) => {
-    const { value } = event.target;
-    setVariant(value);
-  };
-
-  const handleQuantityChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
-    setQuantity(value);
-  };
 
   useEffect(() => {
     if (variant) {
@@ -90,38 +76,17 @@ function ProductPage() {
               />
             )}
           </div>
-
-          <div className="product-page-container-info">
-            <p className="product-page-info-title">{productTitle}</p>
-            {productVariants &&
-              (productVariants.length > 1 ? (
-                <p className="product-page-price">{price && `$${price}`}</p>
-              ) : (
-                <p className="product-page-price">{singleVariantPrice}</p>
-              ))}
-
-            {productVariants && productVariants.length > 1 && (
-              <>
-                <p className="product-page-label">style</p>
-                <select onChange={handleDropDown}>
-                  <option value="">please choose an option</option>
-                  {selectVariantOption}
-                </select>
-              </>
-            )}
-
-            <p className="product-page-label">quantity</p>
-            <input
-              type="number"
-              min="1"
-              value={quantity}
-              className="product-page-quantity-input"
-              onChange={handleQuantityChange}
-            />
-            <button className="product-page-add-cart">add to cart</button>
-            <p className="product-page-description-label">product details</p>
-            <p className="product-page-description">{productDescription}</p>
-          </div>
+          <ProductDetails
+            productTitle={productTitle}
+            productVariants={productVariants}
+            price={price}
+            singleVariantPrice={singleVariantPrice}
+            setVariant={setVariant}
+            productDescription={productDescription}
+            featuredImage={featuredImage}
+            id={id}
+            variant={variant}
+          />
         </section>
       </div>
       <hr className="theme-horizontal-bar" />
