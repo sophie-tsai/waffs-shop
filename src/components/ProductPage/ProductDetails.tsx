@@ -1,6 +1,7 @@
 import React, { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addItem } from "../../redux/cartItems";
+import { useHistory } from "react-router-dom";
 
 type ProductDetailsProps = {
   productTitle: string | undefined;
@@ -19,8 +20,9 @@ type ProductDetailsProps = {
 function ProductDetails(props: ProductDetailsProps) {
   const [quantity, setQuantity] = useState("1");
   const [errorMessage, setErrorMessage] = useState("");
+  const history = useHistory();
 
-  const missingVariant: string = "please choose a style to add item to cart";
+  const missingVariant: string = "select a style";
   const {
     productTitle,
     productVariants,
@@ -67,6 +69,8 @@ function ProductDetails(props: ProductDetailsProps) {
         price: price,
       })
     );
+
+    history.push("/cart");
   };
 
   const displayPrice = productVariants && (
