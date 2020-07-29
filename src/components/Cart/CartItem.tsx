@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
+// import { useDispatch } from "react-redux";
 
 type CartItemProps = {
-  id: string;
+  variantId: string;
   imgSrc: string;
   price: string;
   productTitle: string;
@@ -12,7 +13,9 @@ type CartItemProps = {
 };
 
 function CartItem(props: CartItemProps) {
-  const { id, imgSrc, price, productTitle, quantity, type } = props;
+  const { variantId, imgSrc, price, productTitle, quantity, type } = props;
+  const subtotal = eval(`price*quantity`);
+
   return (
     <div>
       <div className="cart-item-container">
@@ -33,7 +36,7 @@ function CartItem(props: CartItemProps) {
             value={quantity}
             className="cart-item-quantity-input"
           />
-          <p className="cart-item-subtitle">subtotal</p>
+          <p className="cart-item-subtotal">${subtotal}</p>
         </div>
         <div>
           <button className="cart-item-remove">

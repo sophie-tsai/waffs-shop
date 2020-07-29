@@ -9,14 +9,19 @@
 }
 
 .cart-item {
-  &-title,
-  &-subtitle {
+  &-title {
     font-size: 1rem;
     color: $black-color;
     margin: 1rem;
   }
+
+  &-subtotal {
+    font-size: 1.25rem;
+    color: $black-color;
+    margin: 1rem;
+  }
   &-info {
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: $gray-color;
     margin: 0 1rem;
   }
@@ -42,6 +47,7 @@
 .cart-item-remove {
   border: none;
   background: $white-color;
+  margin-top: 1rem;
 }
 
 /***** LAYOUT *****/

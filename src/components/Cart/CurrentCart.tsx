@@ -13,7 +13,7 @@ function CurrentFullCart(props: CurrentFullCartProps) {
 
   const displayCart = cart.items.map(
     (item: {
-      id: string;
+      variantId: string;
       imgSrc: string;
       price: string;
       productTitle: string;
@@ -21,8 +21,8 @@ function CurrentFullCart(props: CurrentFullCartProps) {
       type: string;
     }) => (
       <CartItem
-        key={item.id}
-        id={item.id}
+        key={item.variantId}
+        variantId={item.variantId}
         imgSrc={item.imgSrc}
         price={item.price}
         productTitle={item.productTitle}

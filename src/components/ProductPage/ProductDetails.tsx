@@ -1,6 +1,6 @@
 import React, { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
-import { useDispatch } from "react-redux";
-import { addItem } from "../../redux/cartItems";
+import { useDispatch, useSelector, RootStateOrAny } from "react-redux";
+import { addItem, changeQuantity } from "../../redux/cartItems";
 import { useHistory } from "react-router-dom";
 
 type ProductDetailsProps = {
@@ -14,6 +14,7 @@ type ProductDetailsProps = {
   productDescription: string | undefined;
   featuredImage: string;
   id: string;
+  variantId: string;
   variant: string;
 };
 
@@ -31,11 +32,12 @@ function ProductDetails(props: ProductDetailsProps) {
     setVariant,
     productDescription,
     featuredImage,
-    id,
+    variantId,
     variant,
   } = props;
 
   const dispatch = useDispatch();
+  const cartState = useSelector((state: RootStateOrAny) => state.cart);
 
   const handleDropDown = (event: ChangeEvent<HTMLSelectElement>) => {
     if (errorMessage) setErrorMessage("");
@@ -53,22 +55,34 @@ function ProductDetails(props: ProductDetailsProps) {
     <option key={variant.node.id}>{variant.node.title}</option>
   ));
 
+  const doesItemExistInCart = () => {
+    const itemExistArray = cartState.items.filter(
+      (item: any) => item.variantId === variantId
+    );
+    if (itemExistArray.length) return true;
+    return false;
+  };
+
   const handleAdd = () => {
     if (!variant) {
       setErrorMessage(missingVariant);
       return;
     }
 
-    dispatch(
-      addItem({
-        id: id,
-        imgSrc: featuredImage,
-        productTitle: productTitle,
-        type: variant,
-        quantity: quantity,
-        price: price,
-      })
-    );
+    if (doesItemExistInCart()) {
+      dispatch(changeQuantity({ id: variantId, quantity: quantity }));
+    } else {
+      dispatch(
+        addItem({
+          variantId: variantId,
+          imgSrc: featuredImage,
+          productTitle: productTitle,
+          type: variant,
+          quantity: quantity,
+          price: price,
+        })
+      );
+    }
 
     history.push("/cart");
   };

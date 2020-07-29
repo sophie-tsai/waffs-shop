@@ -10,6 +10,7 @@ function ProductPage() {
   const [variant, setVariant] = useState("");
   const [price, setPrice] = useState("");
   const [featuredImage, setFeaturedImage] = useState("");
+  const [variantId, setVariantId] = useState("");
 
   const { id } = useParams();
   let productTitle: string | undefined;
@@ -23,7 +24,7 @@ function ProductPage() {
   const { loading, data: productData, error } = useQuery(GET_PRODUCT, {
     variables: { id },
   });
-  console.log(loading, productData, error);
+  // console.log(loading, productData, error);
 
   if (!loading && !error) {
     productTitle = productData.node.title;
@@ -32,6 +33,7 @@ function ProductPage() {
       altText: productData.node.images.edges[0].node.altText,
       id: productData.node.images.edges[0].node.id,
     };
+
     productVariants = productData.node.variants.edges;
     productDescription = productData.node.description;
     singleVariantPrice = productData.node.variants.edges[0].node.price;
@@ -42,12 +44,13 @@ function ProductPage() {
   useEffect(() => {
     if (variant) {
       let currentVariant: {
-        node: { price: string; image: { originalSrc: string } };
+        node: { id: string; price: string; image: { originalSrc: string } };
       }[] = productVariants.filter(
         (variantNode: any) => variant === variantNode.node.title
       );
       setPrice(currentVariant[0].node.price);
       setFeaturedImage(currentVariant[0].node.image.originalSrc);
+      setVariantId(currentVariant[0].node.id);
     }
   }, [variant]);
 
@@ -85,6 +88,7 @@ function ProductPage() {
             productDescription={productDescription}
             featuredImage={featuredImage}
             id={id}
+            variantId={variantId}
             variant={variant}
           />
         </section>
