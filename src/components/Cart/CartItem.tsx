@@ -1,7 +1,8 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
+import { changeQuantity, deleteItem } from "../../redux/cartItems";
 
 type CartItemProps = {
   variantId: string;
@@ -14,7 +15,23 @@ type CartItemProps = {
 
 function CartItem(props: CartItemProps) {
   const { variantId, imgSrc, price, productTitle, quantity, type } = props;
-  const subtotal = eval(`price*quantity`);
+  const subtotal: number = parseFloat(price) * parseFloat(quantity);
+  const formattedSubtotal: string = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  }).format(subtotal);
+
+  const dispatch = useDispatch();
+
+  const handleQuantityChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.currentTarget;
+    const difference = (parseInt(value) - parseInt(quantity)).toString();
+    dispatch(changeQuantity({ id: variantId, quantity: difference }));
+  };
+
+  const handleDelete = () => {
+    dispatch(deleteItem(variantId));
+  };
 
   return (
     <div>
@@ -34,13 +51,14 @@ function CartItem(props: CartItemProps) {
             type="number"
             min={1}
             value={quantity}
+            onChange={handleQuantityChange}
             className="cart-item-quantity-input"
           />
-          <p className="cart-item-subtotal">${subtotal}</p>
+          <p className="cart-item-subtotal">{formattedSubtotal}</p>
         </div>
         <div>
           <button className="cart-item-remove">
-            <FontAwesomeIcon icon={faTimes} />
+            <FontAwesomeIcon icon={faTimes} onClick={handleDelete} />
           </button>
         </div>
       </div>

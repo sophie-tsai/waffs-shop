@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import EmptyCart from "./EmptyCart";
 import "./Cart.scss";
 import { useSelector, RootStateOrAny } from "react-redux";

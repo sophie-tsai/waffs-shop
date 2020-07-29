@@ -23,7 +23,7 @@ export function addItem(props: AddItemProps) {
 
 export function deleteItem(id: string) {
   return {
-    type: "DETELE_ITEM",
+    type: "DELETE_ITEM",
     payload: id,
   };
 }
@@ -55,7 +55,9 @@ export default function cartReducer(
         items: [...cart.items, action.payload],
       };
     case "CHANGE_QUANTITY":
-      const productToBeUpdated = cart.items.filter(
+      //
+
+      const updatedQuantityCart = cart.items.map(
         (item: {
           variant: string;
           imgSrc: string;
@@ -63,46 +65,34 @@ export default function cartReducer(
           type: string;
           quantity: string;
           variantId: string;
-        }) => item.variantId === action.payload.id
+        }) => {
+          if (item.variantId === action.payload.id) {
+            return {
+              ...item,
+              quantity:
+                parseInt(item.quantity) + parseInt(action.payload.quantity),
+            };
+          }
+          return item;
+        }
       );
 
-      const updatedProduct = (
-        productToBeUpdated: {
-          variant: string;
-          imgSrc: string;
-          productTitle: string;
-          type: string;
-          quantity: string;
-          variantId: string;
-        },
-        quantity: string
-      ) => {
-        const update = {
-          ...productToBeUpdated,
-          quantity: parseInt(productToBeUpdated.quantity) + parseInt(quantity),
-        };
-        return update;
-      };
-
-      const productsNotToBeUpdated = cart.items.filter(
-        (item: {
-          variant: string;
-          imgSrc: string;
-          productTitle: string;
-          type: string;
-          quantity: string;
-          variantId: string;
-        }) => item.variantId !== action.payload.id
-      );
+      //
       return {
         ...cart,
-        items: [
-          ...productsNotToBeUpdated,
-          updatedProduct(productToBeUpdated[0], action.payload.quantity),
-        ],
+        items: updatedQuantityCart,
       };
     case "DELETE_ITEM":
-      const updatedCart = cart.items.filter((item) => item !== action.payload);
+      const updatedCart = cart.items.filter(
+        (item: {
+          variant: string;
+          imgSrc: string;
+          productTitle: string;
+          type: string;
+          quantity: string;
+          variantId: string;
+        }) => item.variantId !== action.payload
+      );
       return {
         ...cart,
         items: updatedCart,
