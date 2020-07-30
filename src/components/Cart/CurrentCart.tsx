@@ -8,7 +8,7 @@ type CurrentFullCartProps = {
 
 function CurrentFullCart(props: CurrentFullCartProps) {
   const { cart } = props;
-  console.log(cart);
+  // console.log(cart);
 
   const displayCart = cart.items.map(
     (item: {

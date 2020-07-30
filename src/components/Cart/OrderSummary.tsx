@@ -5,7 +5,6 @@ function OrderSummary() {
   const [subtotal, setSubtotal] = useState("");
 
   const cartState = useSelector((state: RootStateOrAny) => state.cart);
-  console.log(cartState);
 
   useEffect(() => {
     if (cartState.items.length > 0) {

@@ -45,31 +45,36 @@ function CartItem(props: CartItemProps) {
   return (
     <div>
       <div className="cart-item-container">
-        <div className="cart-item-flex-row">
-          <div className="cart-item-image-container">
-            <img className="cart-item-image" src={imgSrc} alt={altText} />
+        <div className="cart-item-main-section">
+          {/* product photo, information */}
+          <div className="cart-item-flex-row">
+            <div className="cart-item-image-container">
+              <img className="cart-item-image" src={imgSrc} alt={altText} />
+            </div>
+            <div className="cart-item-description">
+              <p className="cart-item-title">{productTitle}</p>
+              <p className="cart-item-info">${price}</p>
+              <p className="cart-item-info">style: {type}</p>
+            </div>
           </div>
-          <div className="cart-item-flex-column">
-            <p className="cart-item-title">{productTitle}</p>
-            <p className="cart-item-info">${price}</p>
-            <p className="cart-item-info">style: {type}</p>
+
+          {/* product price, quantity */}
+          <div className="cart-item-quantity-price">
+            <input
+              type="number"
+              min={1}
+              value={quantity}
+              onChange={handleQuantityChange}
+              className="cart-item-quantity-input"
+            />
+            <p className="cart-item-subtotal">{formattedSubtotal}</p>
           </div>
         </div>
-        <div className="cart-item-flex-row">
-          <input
-            type="number"
-            min={1}
-            value={quantity}
-            onChange={handleQuantityChange}
-            className="cart-item-quantity-input"
-          />
-          <p className="cart-item-subtotal">{formattedSubtotal}</p>
-        </div>
-        <div>
-          <button className="cart-item-remove">
-            <FontAwesomeIcon icon={faTimes} onClick={handleDelete} />
-          </button>
-        </div>
+
+        {/* delete item */}
+        <button className="cart-item-remove">
+          <FontAwesomeIcon icon={faTimes} onClick={handleDelete} />
+        </button>
       </div>
       <hr className="hr-gray" />
     </div>

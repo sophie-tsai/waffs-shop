@@ -12,7 +12,8 @@
   &-title {
     font-size: 1rem;
     color: $black-color;
-    margin: 1rem;
+    margin: 1rem 0;
+    margin-left: 1rem;
   }
 
   &-subtotal {
@@ -23,7 +24,8 @@
   &-info {
     font-size: 0.9rem;
     color: $gray-color;
-    margin: 0 1rem;
+    margin: 0;
+    margin-left: 1rem;
   }
 }
 
@@ -50,6 +52,8 @@
   margin-top: 1rem;
   outline: none;
   cursor: pointer;
+  flex-grow: 0;
+  flex-shrink: 0;
 }
 
 .order-summary-checkout {
@@ -86,7 +90,7 @@
 .empty-cart {
   &-container {
     text-align: center;
-    padding: 13em;
+    padding: 13em 0;
   }
 
   &-text {
@@ -108,18 +112,26 @@
 .cart-item {
   &-container {
     @include flex(space-between);
-    padding: 2rem 0;
+    padding: 1rem 0.5rem;
+    align-items: flex-start;
+  }
+
+  &-main-section {
+    @include flex(space-between);
+    width: 95%;
   }
 
   &-image {
     height: 8rem;
   }
 
-  &-flex-row {
+  &-flex-row,
+  &-quantity-price {
     @include flex(space-between, row);
+    align-items: flex-start;
   }
 
-  &-flex-column {
+  &-description {
     @include flex(normal, column);
     max-width: 9rem;
   }
@@ -133,6 +145,7 @@
   &-subtotal {
     font-size: 1.5rem;
     font-weight: 700;
+    margin-bottom: 1rem;
   }
 
   &-flex-row {
@@ -146,3 +159,82 @@
 }
 
 /***** MEDIA QUERIES *****/
+
+// under 900px in width
+@media (max-width: $layout-breakpoint-medium) {
+  .section {
+    &-cart {
+      width: 65%;
+    }
+
+    &-order {
+      width: 30%;
+    }
+  }
+
+  .cart-item {
+    &-quantity-price {
+      @include flex(normal, column);
+      align-items: center;
+    }
+
+    &-quantity-input {
+      margin: 1rem;
+    }
+
+    &-subtotal {
+      text-align: center;
+      margin: 1rem;
+    }
+  }
+}
+
+// under 700px in width
+@media (max-width: 700px) {
+  .cart-page {
+    @include page-container-layout;
+    padding: 8em 2em;
+  }
+
+  .section {
+    &-cart {
+      width: 100%;
+    }
+
+    &-order {
+      width: 100%;
+    }
+  }
+
+  .cart-page-container-section {
+    @include flex(normal, column);
+    max-width: 55rem;
+    margin: 0 auto;
+  }
+}
+
+// under 450px in width
+@media (max-width: $layout-breakpoint-phone) {
+  .cart-item {
+    &-quantity-price {
+      @include flex(space-between, row);
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    &-flex-row {
+      @include flex(space-between, row);
+      align-items: flex-start;
+    }
+
+    &-main-section {
+      @include flex(normal, column);
+    }
+
+    &-title,
+    &-info {
+      text-align: right;
+      padding-right: 1rem;
+    }
+  }
+}

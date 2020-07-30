@@ -114,7 +114,6 @@ select {
     @include flex(space-between);
     width: 100%;
     padding: 0;
-
     max-width: 60rem;
     margin: 0 auto;
   }
@@ -147,12 +146,25 @@ select {
   .product-page-container-section {
     @include flex(normal, column);
     width: 100%;
-    padding: 2em 4em;
+    padding: 1em 2em;
   }
 
   .product-page-container-img,
   .product-page-container-info {
     width: 100%;
     margin-bottom: 1.5em;
+  }
+}
+
+// under 450 in width
+@media (max-width: $layout-breakpoint-phone) {
+  .product-page {
+    padding: 6em 2em 2em;
+  }
+
+  .product-page-container-section {
+    @include flex(normal, column);
+    width: 100%;
+    padding: 0;
   }
 }
