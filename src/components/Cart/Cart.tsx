@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import EmptyCart from "./EmptyCart";
 import "./Cart.scss";
 import { useSelector, RootStateOrAny } from "react-redux";
 import CurrentFullCart from "./CurrentCart";
+import OrderSummary from "./OrderSummary";
 
 function Cart() {
   const cartState = useSelector((state: RootStateOrAny) => state.cart);
-
-  const [subtotal, setSubtotal] = useState("");
 
   const isCartEmpty = () => {
     return cartState.items.length === 0;
@@ -20,18 +19,14 @@ function Cart() {
           <h1 className="">my cart</h1>
           <hr className="hr-gray" />
 
-          {isCartEmpty() ? (
-            <EmptyCart />
-          ) : (
-            <CurrentFullCart cart={cartState} setSubtotal={setSubtotal} />
-          )}
+          {isCartEmpty() ? <EmptyCart /> : <CurrentFullCart cart={cartState} />}
         </div>
 
         {!isCartEmpty() && (
           <div className="section-order">
             <h1>order summary</h1>
             <hr className="hr-gray" />
-            {subtotal}
+            <OrderSummary />
           </div>
         )}
       </section>

@@ -16,6 +16,7 @@ type ProductDetailsProps = {
   id: string;
   variantId: string;
   variant: string;
+  altText: string | undefined;
 };
 
 function ProductDetails(props: ProductDetailsProps) {
@@ -34,6 +35,7 @@ function ProductDetails(props: ProductDetailsProps) {
     featuredImage,
     variantId,
     variant,
+    altText,
   } = props;
 
   const dispatch = useDispatch();
@@ -80,6 +82,7 @@ function ProductDetails(props: ProductDetailsProps) {
           type: variant,
           quantity: quantity,
           price: price,
+          altText: altText,
         })
       );
     }

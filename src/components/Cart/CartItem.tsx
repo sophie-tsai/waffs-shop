@@ -11,10 +11,19 @@ type CartItemProps = {
   productTitle: string;
   quantity: string;
   type: string;
+  altText: string | undefined;
 };
 
 function CartItem(props: CartItemProps) {
-  const { variantId, imgSrc, price, productTitle, quantity, type } = props;
+  const {
+    variantId,
+    imgSrc,
+    price,
+    productTitle,
+    quantity,
+    type,
+    altText,
+  } = props;
   const subtotal: number = parseFloat(price) * parseFloat(quantity);
   const formattedSubtotal: string = new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -38,7 +47,7 @@ function CartItem(props: CartItemProps) {
       <div className="cart-item-container">
         <div className="cart-item-flex-row">
           <div className="cart-item-image-container">
-            <img className="cart-item-image" src={imgSrc} />
+            <img className="cart-item-image" src={imgSrc} alt={altText} />
           </div>
           <div className="cart-item-flex-column">
             <p className="cart-item-title">{productTitle}</p>

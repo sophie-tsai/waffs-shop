@@ -1,5 +1,3 @@
-import { isTypeNode } from "graphql";
-
 const cartState = {
   items: [],
 };
@@ -11,13 +9,30 @@ type AddItemProps = {
   type: string;
   quantity: string;
   price: string;
+  altText: string | undefined;
 };
 
 export function addItem(props: AddItemProps) {
-  const { variantId, imgSrc, productTitle, type, quantity, price } = props;
+  const {
+    variantId,
+    imgSrc,
+    productTitle,
+    type,
+    quantity,
+    price,
+    altText,
+  } = props;
   return {
     type: "ADD_ITEM",
-    payload: { variantId, imgSrc, productTitle, type, quantity, price },
+    payload: {
+      variantId,
+      imgSrc,
+      productTitle,
+      type,
+      quantity,
+      price,
+      altText,
+    },
   };
 }
 
@@ -56,16 +71,8 @@ export default function cartReducer(
       };
     case "CHANGE_QUANTITY":
       //
-
       const updatedQuantityCart = cart.items.map(
-        (item: {
-          variant: string;
-          imgSrc: string;
-          productTitle: string;
-          type: string;
-          quantity: string;
-          variantId: string;
-        }) => {
+        (item: { quantity: string; variantId: string }) => {
           if (item.variantId === action.payload.id) {
             return {
               ...item,
@@ -84,14 +91,7 @@ export default function cartReducer(
       };
     case "DELETE_ITEM":
       const updatedCart = cart.items.filter(
-        (item: {
-          variant: string;
-          imgSrc: string;
-          productTitle: string;
-          type: string;
-          quantity: string;
-          variantId: string;
-        }) => item.variantId !== action.payload
+        (item: { variantId: string }) => item.variantId !== action.payload
       );
       return {
         ...cart,

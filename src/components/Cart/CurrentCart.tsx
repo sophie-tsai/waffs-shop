@@ -1,14 +1,13 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React from "react";
 import { RootStateOrAny } from "react-redux";
 import CartItem from "./CartItem";
 
 type CurrentFullCartProps = {
-  setSubtotal: Dispatch<SetStateAction<string>>;
   cart: RootStateOrAny;
 };
 
 function CurrentFullCart(props: CurrentFullCartProps) {
-  const { setSubtotal, cart } = props;
+  const { cart } = props;
   console.log(cart);
 
   const displayCart = cart.items.map(
@@ -19,6 +18,7 @@ function CurrentFullCart(props: CurrentFullCartProps) {
       productTitle: string;
       quantity: string;
       type: string;
+      altText?: string;
     }) => (
       <CartItem
         key={item.variantId}
@@ -28,6 +28,7 @@ function CurrentFullCart(props: CurrentFullCartProps) {
         productTitle={item.productTitle}
         quantity={item.quantity}
         type={item.type}
+        altText={item.altText}
       />
     )
   );

@@ -9,7 +9,7 @@ function Shop() {
   const { loading, data: shopData, error } = useQuery(GET_PRODUCTS);
   let displayProducts: any;
   // console.log(error);
-  console.log(shopData);
+  // console.log(shopData);
 
   if (!loading && !error) {
     const { edges: productNodes } = shopData.shop.products;

@@ -90,6 +90,7 @@ function ProductPage() {
             id={id}
             variantId={variantId}
             variant={variant}
+            altText={productImage?.altText}
           />
         </section>
       </div>

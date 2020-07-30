@@ -52,6 +52,11 @@
   cursor: pointer;
 }
 
+.order-summary-checkout {
+  @include button($white-color, $accent-color, $accent-color);
+  width: 100%;
+}
+
 /***** LAYOUT *****/
 .cart-page {
   @include page-container-layout;
@@ -117,6 +122,21 @@
   &-flex-column {
     @include flex(normal, column);
     max-width: 9rem;
+  }
+}
+
+.order-summary {
+  &-container {
+    padding: 2rem 0;
+  }
+
+  &-subtotal {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  &-flex-row {
+    @include flex(space-between, row);
   }
 }
 /***** MISC *****/
