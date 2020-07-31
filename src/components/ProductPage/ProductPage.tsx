@@ -48,9 +48,11 @@ function ProductPage() {
       }[] = productVariants.filter(
         (variantNode: any) => variant === variantNode.node.title
       );
-      setPrice(currentVariant[0].node.price);
-      setFeaturedImage(currentVariant[0].node.image.originalSrc);
-      setVariantId(currentVariant[0].node.id);
+      if (currentVariant.length) {
+        setPrice(currentVariant[0].node.price);
+        setFeaturedImage(currentVariant[0].node.image.originalSrc);
+        setVariantId(currentVariant[0].node.id);
+      }
     }
   }, [variant]);
 
@@ -85,6 +87,7 @@ function ProductPage() {
             price={price}
             singleVariantPrice={singleVariantPrice}
             setVariant={setVariant}
+            setVariantId={setVariantId}
             productDescription={productDescription}
             featuredImage={featuredImage}
             id={id}

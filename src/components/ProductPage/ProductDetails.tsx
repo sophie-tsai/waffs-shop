@@ -1,4 +1,10 @@
-import React, { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
+import React, {
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+  useState,
+  useEffect,
+} from "react";
 import { useDispatch, useSelector, RootStateOrAny } from "react-redux";
 import { addItem, changeQuantity } from "../../redux/cartItems";
 import { useHistory } from "react-router-dom";
@@ -11,6 +17,7 @@ type ProductDetailsProps = {
   price: string;
   singleVariantPrice: string | undefined;
   setVariant: Dispatch<SetStateAction<string>>;
+  setVariantId: Dispatch<SetStateAction<string>>;
   productDescription: string | undefined;
   featuredImage: string;
   id: string;
@@ -31,12 +38,14 @@ function ProductDetails(props: ProductDetailsProps) {
     price,
     singleVariantPrice,
     setVariant,
+    setVariantId,
     productDescription,
     featuredImage,
     variantId,
     variant,
     altText,
   } = props;
+  // console.log("props", props);
 
   const dispatch = useDispatch();
   const cartState = useSelector((state: RootStateOrAny) => state.cart);
@@ -66,7 +75,7 @@ function ProductDetails(props: ProductDetailsProps) {
   };
 
   const handleAdd = () => {
-    if (!variant) {
+    if (productVariants.length > 1 && !variant) {
       setErrorMessage(missingVariant);
       return;
     }
@@ -81,7 +90,7 @@ function ProductDetails(props: ProductDetailsProps) {
           productTitle: productTitle,
           type: variant,
           quantity: quantity,
-          price: price,
+          price: singleVariantPrice || price,
           altText: altText,
         })
       );
@@ -92,9 +101,21 @@ function ProductDetails(props: ProductDetailsProps) {
 
   const displayPrice = productVariants && (
     <p className="product-page-price">
-      {productVariants.length > 1 ? price && `$${price}` : singleVariantPrice}
+      {productVariants.length > 1
+        ? price && `$${price}`
+        : `$${singleVariantPrice}`}
     </p>
   );
+
+  useEffect(() => {
+    if (productVariants && productVariants.length > 1) {
+      setVariant(productVariants[0].node.id);
+    }
+
+    if (productVariants && productVariants.length === 1) {
+      setVariantId(productVariants[0].node.id);
+    }
+  }, [productVariants]);
 
   return (
     <>
@@ -102,7 +123,7 @@ function ProductDetails(props: ProductDetailsProps) {
         <p className="product-page-info-title">{productTitle}</p>
         <p className="product-error-message">{errorMessage}</p>
 
-        {variant && displayPrice}
+        {displayPrice}
         {productVariants && productVariants.length > 1 && (
           <>
             <p className="product-page-label">style</p>

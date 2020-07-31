@@ -5,7 +5,7 @@ export const GET_PRODUCTS = gql`
     shop {
       name
       description
-      products(first: 3) {
+      products(first: 10) {
         edges {
           node {
             id
@@ -15,7 +15,7 @@ export const GET_PRODUCTS = gql`
               name
               values
             }
-            variants(first: 2) {
+            variants(first: 10) {
               edges {
                 node {
                   id
@@ -32,7 +32,7 @@ export const GET_PRODUCTS = gql`
                 }
               }
             }
-            images(first: 2) {
+            images(first: 10) {
               pageInfo {
                 hasNextPage
                 hasPreviousPage
@@ -56,7 +56,7 @@ export const GET_PRODUCT = gql`
       ... on Product {
         title
         description
-        images(first: 2) {
+        images(first: 10) {
           edges {
             node {
               id
@@ -65,7 +65,7 @@ export const GET_PRODUCT = gql`
             }
           }
         }
-        variants(first: 2) {
+        variants(first: 10) {
           edges {
             node {
               id

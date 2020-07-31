@@ -41,6 +41,7 @@ function CartItem(props: CartItemProps) {
   const handleDelete = () => {
     dispatch(deleteItem(variantId));
   };
+  console.log(props);
 
   return (
     <div>
@@ -54,7 +55,7 @@ function CartItem(props: CartItemProps) {
             <div className="cart-item-description">
               <p className="cart-item-title">{productTitle}</p>
               <p className="cart-item-info">${price}</p>
-              <p className="cart-item-info">style: {type}</p>
+              {type && <p className="cart-item-info">style: {type}</p>}
             </div>
           </div>
 
