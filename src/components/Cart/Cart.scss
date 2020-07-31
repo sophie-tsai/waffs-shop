@@ -215,6 +215,10 @@
 
 // under 450px in width
 @media (max-width: $layout-breakpoint-phone) {
+  .cart-page {
+    padding: 6em 1.5em 2em;
+  }
+
   .cart-item {
     &-quantity-price {
       @include flex(space-between, row);

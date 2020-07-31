@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, RootStateOrAny } from "react-redux";
 
-function OrderSummary() {
-  const [subtotal, setSubtotal] = useState("");
+type OrderSummaryProps = {
+  checkout: { webUrl: string };
+};
 
+function OrderSummary(props: OrderSummaryProps) {
+  const [subtotal, setSubtotal] = useState("");
+  const { webUrl } = props.checkout;
   const cartState = useSelector((state: RootStateOrAny) => state.cart);
 
   useEffect(() => {
@@ -26,6 +30,10 @@ function OrderSummary() {
     }
   }, [cartState]);
 
+  const openCheckout = () => {
+    window.open(webUrl);
+  };
+
   return (
     <section className="order-summary-container">
       <div className="order-summary-flex-row">
@@ -36,7 +44,9 @@ function OrderSummary() {
         taxes & shipping calculated at checkout
       </p>
 
-      <button className="order-summary-checkout">check out</button>
+      <button className="order-summary-checkout" onClick={openCheckout}>
+        check out
+      </button>
     </section>
   );
 }
