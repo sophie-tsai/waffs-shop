@@ -3,7 +3,6 @@ import React, { useState, MouseEvent } from "react";
 type ProductImageProps = {
   imgSrc: string;
   altText: string | undefined;
-  id: string;
 };
 
 function ProductImageZoom(props: ProductImageProps) {

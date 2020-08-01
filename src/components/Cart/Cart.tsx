@@ -6,12 +6,11 @@ import CurrentFullCart from "./CurrentCart";
 import OrderSummary from "./OrderSummary";
 import { useMutation } from "@apollo/client";
 import { CREATE_CHECKOUT } from "../../graphql/check-out";
-import { stringify } from "querystring";
 
 function Cart() {
   const cartState = useSelector((state: RootStateOrAny) => state.cart);
   const [windowWidth, setWindowWidth] = useState(0);
-  const [createCheckoutMutation, { data }] = useMutation(CREATE_CHECKOUT);
+  const [createCheckoutMutation] = useMutation(CREATE_CHECKOUT);
   const [checkout, setCheckout] = useState({ webUrl: "" });
   // console.log(checkout, "checkout");
 

@@ -1,43 +1,42 @@
-import React from "react";
+import React, { useEffect, useContext, useState, ReactNode } from "react";
 import "./Shop.scss";
 import "../LandingPage/LandingPage.scss";
-import { useQuery } from "@apollo/client";
-import { GET_PRODUCTS } from "../../graphql/product-queries";
 import Product from "./Product";
+import { QueryContext } from "../../queryContext/QueryContext";
 
 function Shop() {
-  const { loading, data: shopData, error } = useQuery(GET_PRODUCTS);
-  let displayProducts: any;
-  // console.log(error);
-  // console.log(shopData);
+  const [displayProducts, setDisplayProducts] = useState<ReactNode[]>([]);
 
-  if (!loading && !error) {
-    const { edges: productNodes } = shopData.shop.products;
+  const context = useContext(QueryContext);
 
-    displayProducts = productNodes.map((product: any) => (
-      <Product
-        key={product.node.id}
-        productTitle={product.node.title}
-        productImage={product.node.images.edges[0].node.src}
-        id={product.node.id}
-        altText={product.node.images.edges[0].node.altText}
-      />
-    ));
-  }
+  useEffect(() => {
+    if (context.shopProductDisplay) {
+      const productsArray = context.shopProductDisplay.map(
+        (product: {
+          node: {
+            id: string;
+            title: string;
+            images: { edges: { node: { src: string; altText: string } }[] };
+          };
+        }) => (
+          <Product
+            key={product.node.id}
+            productTitle={product.node.title}
+            productImage={product.node.images.edges[0].node.src}
+            id={product.node.id}
+            altText={product.node.images.edges[0].node.altText}
+          />
+        )
+      );
+      setDisplayProducts(productsArray);
+    }
+  }, [context]);
 
   return (
     <>
       <div className="shop-page">
         <h1 className="shop-headline">shop the collection</h1>
-        <section className="shop-container">
-          {error ? (
-            <p className="error-message">
-              oops, there was an error, please try again
-            </p>
-          ) : (
-            displayProducts
-          )}
-        </section>
+        <section className="shop-container">{displayProducts}</section>
       </div>
       <hr className="theme-horizontal-bar" />
     </>

@@ -41,7 +41,7 @@ function CartItem(props: CartItemProps) {
   const handleDelete = () => {
     dispatch(deleteItem(variantId));
   };
-  console.log(props);
+  // console.log(props);
 
   return (
     <div>

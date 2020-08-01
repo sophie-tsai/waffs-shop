@@ -5,56 +5,91 @@ import { GET_PRODUCT } from "../../graphql/product-queries";
 import { useQuery } from "@apollo/client";
 import ProductImageZoom from "./ProductImageZoom";
 import ProductDetails from "./ProductDetails";
+// import ImageCarousel from "./ImageCarousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 function ProductPage() {
-  const [variant, setVariant] = useState("");
-  const [price, setPrice] = useState("");
-  const [featuredImage, setFeaturedImage] = useState("");
-  const [variantId, setVariantId] = useState("");
-
+  const [queryId, setQueryId] = useState("");
+  const [productQuery, setProductQuery] = useState<any>({});
   const { id } = useParams();
-  let productTitle: string | undefined;
-  let productImage: { image: string; altText: string; id: any } | undefined;
-  let productVariants:
-    | { node: { price: string; image: { originalSrc: string } } }[]
-    | any;
-  let productDescription: string | undefined;
-  let singleVariantPrice: string | undefined;
-
-  const { loading, data: productData, error } = useQuery(GET_PRODUCT, {
-    variables: { id },
+  const [defaultImage, setDefaultImage] = useState("");
+  const [variantDetails, setVariantDetails] = useState({
+    price: "",
+    variantId: "",
+    featuredImage: "",
+    altText: "",
+    variantType: "",
   });
-  // console.log(loading, productData, error);
+  const [selectedVariant, setSelectedVariant] = useState("");
 
-  if (!loading && !error) {
-    productTitle = productData.node.title;
-    productImage = {
-      image: productData.node.images.edges[0].node.originalSrc,
-      altText: productData.node.images.edges[0].node.altText,
-      id: productData.node.images.edges[0].node.id,
-    };
+  // console.log({
+  //   "product query": productQuery,
+  //   variantName: selectedVariant,
+  //   variantDetails: variantDetails,
+  // });
 
-    productVariants = productData.node.variants.edges;
-    productDescription = productData.node.description;
-    singleVariantPrice = productData.node.variants.edges[0].node.price;
-
-    if (!featuredImage) setFeaturedImage(productImage.image);
-  }
-
+  // SET UP & QUERY
   useEffect(() => {
-    if (variant) {
-      let currentVariant: {
-        node: { id: string; price: string; image: { originalSrc: string } };
-      }[] = productVariants.filter(
-        (variantNode: any) => variant === variantNode.node.title
-      );
-      if (currentVariant.length) {
-        setPrice(currentVariant[0].node.price);
-        setFeaturedImage(currentVariant[0].node.image.originalSrc);
-        setVariantId(currentVariant[0].node.id);
+    setQueryId(id);
+  }, []);
+
+  const {
+    loading: productLoading,
+    data: productData,
+    error: productError,
+  } = useQuery(GET_PRODUCT, { variables: { id: queryId } });
+
+  const { productTitle, productDesc, productVariants, images } = productQuery;
+
+  const hasOnlyOneVariant = () => {
+    return productQuery.productVariants.length === 1;
+  };
+
+  // SET QUERY INFO TO STATE
+  useEffect(() => {
+    if (!productError && productData) {
+      setProductQuery({
+        productTitle: productData.node.title,
+        productVariants: productData.node.variants.edges,
+        productDesc: productData.node.description,
+        images: productData.node.images.edges,
+      });
+    }
+  }, [productLoading]);
+
+  // SPECIFICS IF ITEM ONLY HAS ONE VARIANT
+  useEffect(() => {
+    if (Object.entries(productQuery).length > 1) {
+      setDefaultImage(productQuery.images[0].node.originalSrc);
+
+      if (hasOnlyOneVariant()) {
+        setVariantDetails({
+          price: productQuery.productVariants[0].node.price,
+          variantId: productQuery.productVariants[0].node.id,
+          featuredImage: productQuery.productVariants[0].node.image.originalSrc,
+          variantType: productQuery.productVariants[0].node.title,
+          altText: productQuery.productVariants[0].node.image.altText,
+        });
       }
     }
-  }, [variant]);
+  }, [productQuery]);
+
+  // SPECIFICS FOR SELECTED VARIANT IF ITEM HAS MORE THAN ONE VARIANT
+  useEffect(() => {
+    if (selectedVariant) {
+      const selectedVariantNode = productQuery.productVariants.filter(
+        (element: any) => selectedVariant === element.node.title
+      );
+
+      setVariantDetails({
+        price: selectedVariantNode[0].node.price,
+        variantId: selectedVariantNode[0].node.id,
+        featuredImage: selectedVariantNode[0].node.image.originalSrc,
+        variantType: selectedVariantNode[0].node.title,
+        altText: selectedVariantNode[0].node.image.altText,
+      });
+    }
+  }, [selectedVariant]);
 
   return (
     <>
@@ -73,27 +108,18 @@ function ProductPage() {
         </div>
         <section className="product-page-container-section">
           <div className="product-page-container-img">
-            {featuredImage && (
-              <ProductImageZoom
-                imgSrc={featuredImage}
-                altText={productImage?.altText}
-                id={productImage?.id}
-              />
-            )}
+            <ProductImageZoom
+              imgSrc={variantDetails.featuredImage || defaultImage}
+              altText={variantDetails.altText || "@corgowaffles merchandise"}
+            />
           </div>
           <ProductDetails
+            setSelectedVariant={setSelectedVariant}
+            variantDetails={variantDetails}
+            hasOnlyOneVariant={hasOnlyOneVariant}
             productTitle={productTitle}
             productVariants={productVariants}
-            price={price}
-            singleVariantPrice={singleVariantPrice}
-            setVariant={setVariant}
-            setVariantId={setVariantId}
-            productDescription={productDescription}
-            featuredImage={featuredImage}
-            id={id}
-            variantId={variantId}
-            variant={variant}
-            altText={productImage?.altText}
+            productDesc={productDesc}
           />
         </section>
       </div>

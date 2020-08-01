@@ -72,6 +72,7 @@ export const GET_PRODUCT = gql`
               image {
                 id
                 originalSrc
+                altText
               }
               title
               availableForSale

@@ -26,20 +26,21 @@ type ProductDetailsProps = {
   altText: string | undefined;
 };
 
-function ProductDetails(props: ProductDetailsProps) {
+function ProductDetails(props: any) {
   const [quantity, setQuantity] = useState("1");
   const [errorMessage, setErrorMessage] = useState("");
   const history = useHistory();
 
   const missingVariant: string = "select a style";
   const {
+    setSelectedVariant,
     productTitle,
     productVariants,
     price,
     singleVariantPrice,
-    setVariant,
-    setVariantId,
-    productDescription,
+    // setVariant,
+    // setVariantId,
+    productDesc,
     featuredImage,
     variantId,
     variant,
@@ -47,15 +48,17 @@ function ProductDetails(props: ProductDetailsProps) {
   } = props;
   // console.log("props", props);
 
-  const dispatch = useDispatch();
-  const cartState = useSelector((state: RootStateOrAny) => state.cart);
-
   const handleDropDown = (event: ChangeEvent<HTMLSelectElement>) => {
     if (errorMessage) setErrorMessage("");
 
     const { value } = event.target;
-    setVariant(value);
+    // setVariant(value);
+    setSelectedVariant(value);
   };
+
+  //////////////////////////
+  const dispatch = useDispatch();
+  const cartState = useSelector((state: RootStateOrAny) => state.cart);
 
   const handleQuantityChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
@@ -107,15 +110,15 @@ function ProductDetails(props: ProductDetailsProps) {
     </p>
   );
 
-  useEffect(() => {
-    if (productVariants && productVariants.length > 1) {
-      setVariant(productVariants[0].node.id);
-    }
+  // useEffect(() => {
+  //   if (productVariants && productVariants.length > 1) {
+  //     setVariantId(productVariants[0].node.id);
+  //   }
 
-    if (productVariants && productVariants.length === 1) {
-      setVariantId(productVariants[0].node.id);
-    }
-  }, [productVariants]);
+  //   if (productVariants && productVariants.length === 1) {
+  //     setVariantId(productVariants[0].node.id);
+  //   }
+  // }, [productVariants]);
 
   return (
     <>
@@ -145,7 +148,7 @@ function ProductDetails(props: ProductDetailsProps) {
           add to cart
         </button>
         <p className="product-page-description-label">product details</p>
-        <p className="product-page-description">{productDescription}</p>
+        <p className="product-page-description">{productDesc}</p>
       </div>
     </>
   );
