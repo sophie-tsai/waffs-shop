@@ -33,7 +33,7 @@ function ProductImageZoom(props: ProductImageProps) {
     <figure
       onMouseMove={handleMouseMove}
       style={style}
-      className="product-page-figure"
+      className={`product-page-figure`}
     >
       <img className="product-page-img" src={imgSrc} alt={altText} />
     </figure>

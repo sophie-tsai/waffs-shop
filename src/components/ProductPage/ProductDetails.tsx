@@ -1,64 +1,57 @@
-import React, {
-  ChangeEvent,
-  Dispatch,
-  SetStateAction,
-  useState,
-  useEffect,
-} from "react";
+import React, { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
 import { useDispatch, useSelector, RootStateOrAny } from "react-redux";
 import { addItem, changeQuantity } from "../../redux/cartItems";
 import { useHistory } from "react-router-dom";
 
 type ProductDetailsProps = {
-  productTitle: string | undefined;
-  productVariants:
-    | { node: { price: string; image: { originalSrc: string } } }[]
-    | any;
-  price: string;
-  singleVariantPrice: string | undefined;
-  setVariant: Dispatch<SetStateAction<string>>;
-  setVariantId: Dispatch<SetStateAction<string>>;
-  productDescription: string | undefined;
-  featuredImage: string;
-  id: string;
-  variantId: string;
-  variant: string;
-  altText: string | undefined;
+  selectedVariant: string;
+  setSelectedVariant: Dispatch<SetStateAction<string>>;
+  variantDetails: {
+    price: string;
+    variantId: string;
+    featuredImage: string;
+    altText: string;
+    variantType: string;
+    availableForSale: boolean;
+  };
+  hasOnlyOneVariant: () => boolean;
+  productTitle: string;
+  productVariants: {
+    node: { price: string; image: { originalSrc: string } };
+  }[];
+  productDesc: string;
+  productId: string;
 };
 
-function ProductDetails(props: any) {
+function ProductDetails(props: ProductDetailsProps) {
   const [quantity, setQuantity] = useState("1");
   const [errorMessage, setErrorMessage] = useState("");
   const history = useHistory();
-
+  const dispatch = useDispatch();
+  const cartState = useSelector((state: RootStateOrAny) => state.cart);
   const missingVariant: string = "select a style";
+
   const {
+    selectedVariant,
     setSelectedVariant,
     productTitle,
     productVariants,
-    price,
-    singleVariantPrice,
-    // setVariant,
-    // setVariantId,
+    hasOnlyOneVariant,
     productDesc,
-    featuredImage,
-    variantId,
-    variant,
-    altText,
+    variantDetails,
+    productId,
   } = props;
-  // console.log("props", props);
+
+  console.log("props", props);
+  console.log("global state", cartState.items);
 
   const handleDropDown = (event: ChangeEvent<HTMLSelectElement>) => {
     if (errorMessage) setErrorMessage("");
 
     const { value } = event.target;
-    // setVariant(value);
+
     setSelectedVariant(value);
   };
-
-  //////////////////////////
-  const dispatch = useDispatch();
-  const cartState = useSelector((state: RootStateOrAny) => state.cart);
 
   const handleQuantityChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
@@ -71,30 +64,34 @@ function ProductDetails(props: any) {
 
   const doesItemExistInCart = () => {
     const itemExistArray = cartState.items.filter(
-      (item: any) => item.variantId === variantId
+      (item: any) => item.variantId === variantDetails.variantId
     );
     if (itemExistArray.length) return true;
     return false;
   };
 
   const handleAdd = () => {
-    if (productVariants.length > 1 && !variant) {
+    if (!variantDetails.availableForSale) return;
+
+    if (productVariants.length > 1 && !selectedVariant) {
       setErrorMessage(missingVariant);
       return;
     }
 
     if (doesItemExistInCart()) {
-      dispatch(changeQuantity({ id: variantId, quantity: quantity }));
+      dispatch(
+        changeQuantity({ id: variantDetails.variantId, quantity: quantity })
+      );
     } else {
       dispatch(
         addItem({
-          variantId: variantId,
-          imgSrc: featuredImage,
+          variantId: variantDetails.variantId,
+          imgSrc: variantDetails.featuredImage,
           productTitle: productTitle,
-          type: variant,
+          variantType: variantDetails.variantType,
           quantity: quantity,
-          price: singleVariantPrice || price,
-          altText: altText,
+          price: variantDetails.price,
+          productId: productId,
         })
       );
     }
@@ -103,22 +100,16 @@ function ProductDetails(props: any) {
   };
 
   const displayPrice = productVariants && (
-    <p className="product-page-price">
-      {productVariants.length > 1
-        ? price && `$${price}`
-        : `$${singleVariantPrice}`}
+    <p
+      className={`product-page-price ${
+        !variantDetails.availableForSale && `line-through`
+      }`}
+    >
+      {hasOnlyOneVariant()
+        ? `$${variantDetails.price}`
+        : selectedVariant && `$${variantDetails.price}`}
     </p>
   );
-
-  // useEffect(() => {
-  //   if (productVariants && productVariants.length > 1) {
-  //     setVariantId(productVariants[0].node.id);
-  //   }
-
-  //   if (productVariants && productVariants.length === 1) {
-  //     setVariantId(productVariants[0].node.id);
-  //   }
-  // }, [productVariants]);
 
   return (
     <>
@@ -144,8 +135,13 @@ function ProductDetails(props: any) {
           className="product-page-quantity-input"
           onChange={handleQuantityChange}
         />
-        <button className="product-page-add-cart" onClick={handleAdd}>
-          add to cart
+        <button
+          className={`product-page-add-cart ${
+            !variantDetails.availableForSale && `out-of-stock-cursor-default`
+          }`}
+          onClick={handleAdd}
+        >
+          {variantDetails.availableForSale ? `add to cart` : `sold out`}
         </button>
         <p className="product-page-description-label">product details</p>
         <p className="product-page-description">{productDesc}</p>

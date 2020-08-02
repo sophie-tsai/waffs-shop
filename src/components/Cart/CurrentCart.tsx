@@ -8,7 +8,7 @@ type CurrentFullCartProps = {
 
 function CurrentFullCart(props: CurrentFullCartProps) {
   const { cart } = props;
-  // console.log(cart);
+  console.log("cart", cart);
 
   const displayCart = cart.items.map(
     (item: {
@@ -17,7 +17,8 @@ function CurrentFullCart(props: CurrentFullCartProps) {
       price: string;
       productTitle: string;
       quantity: string;
-      type: string;
+      variantType: string;
+      productId: string;
       altText?: string;
     }) => (
       <CartItem
@@ -27,7 +28,8 @@ function CurrentFullCart(props: CurrentFullCartProps) {
         price={item.price}
         productTitle={item.productTitle}
         quantity={item.quantity}
-        type={item.type}
+        variantType={item.variantType}
+        productId={item.productId}
         altText={item.altText}
       />
     )

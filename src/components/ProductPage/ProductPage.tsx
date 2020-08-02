@@ -1,17 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./ProductPage.scss";
 import { useParams, Link } from "react-router-dom";
 import { GET_PRODUCT } from "../../graphql/product-queries";
 import { useQuery } from "@apollo/client";
 import ProductImageZoom from "./ProductImageZoom";
 import ProductDetails from "./ProductDetails";
+import { StockContext } from "../../context/StockContext";
+
 // import ImageCarousel from "./ImageCarousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+// import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 function ProductPage() {
-  const [queryId, setQueryId] = useState("");
   const [productQuery, setProductQuery] = useState<any>({});
   const { id } = useParams();
+  // const [productOutOfStock, setProductOutOfStock] = useState(false);
   const [defaultImage, setDefaultImage] = useState("");
   const [variantDetails, setVariantDetails] = useState({
     price: "",
@@ -19,25 +21,17 @@ function ProductPage() {
     featuredImage: "",
     altText: "",
     variantType: "",
+    availableForSale: true,
   });
   const [selectedVariant, setSelectedVariant] = useState("");
-
-  // console.log({
-  //   "product query": productQuery,
-  //   variantName: selectedVariant,
-  //   variantDetails: variantDetails,
-  // });
+  const context = useContext(StockContext);
 
   // SET UP & QUERY
-  useEffect(() => {
-    setQueryId(id);
-  }, []);
-
   const {
     loading: productLoading,
     data: productData,
     error: productError,
-  } = useQuery(GET_PRODUCT, { variables: { id: queryId } });
+  } = useQuery(GET_PRODUCT, { variables: { id: id } });
 
   const { productTitle, productDesc, productVariants, images } = productQuery;
 
@@ -54,30 +48,37 @@ function ProductPage() {
         productDesc: productData.node.description,
         images: productData.node.images.edges,
       });
+      setDefaultImage(productData.node.images.edges[0].node.originalSrc);
     }
   }, [productLoading]);
 
   // SPECIFICS IF ITEM ONLY HAS ONE VARIANT
   useEffect(() => {
     if (Object.entries(productQuery).length > 1) {
-      setDefaultImage(productQuery.images[0].node.originalSrc);
-
       if (hasOnlyOneVariant()) {
         setVariantDetails({
-          price: productQuery.productVariants[0].node.price,
-          variantId: productQuery.productVariants[0].node.id,
-          featuredImage: productQuery.productVariants[0].node.image.originalSrc,
-          variantType: productQuery.productVariants[0].node.title,
-          altText: productQuery.productVariants[0].node.image.altText,
+          price: productVariants[0].node.price,
+          variantId: productVariants[0].node.id,
+          featuredImage: productVariants[0].node.image.originalSrc,
+          variantType: productVariants[0].node.title,
+          altText: productVariants[0].node.image.altText,
+          availableForSale: productVariants[0].node.availableForSale,
         });
       }
+
+      // // CHECKS IF ITEM IS SOLD OUT
+      // const variantInStockArray = productVariants.filter(
+      //   (variant: { node: { availableForSale: boolean } }) =>
+      //     variant.node.availableForSale === true
+      // );
+      // if (variantInStockArray.length === 0) setProductOutOfStock(true);
     }
   }, [productQuery]);
 
   // SPECIFICS FOR SELECTED VARIANT IF ITEM HAS MORE THAN ONE VARIANT
   useEffect(() => {
     if (selectedVariant) {
-      const selectedVariantNode = productQuery.productVariants.filter(
+      const selectedVariantNode = productVariants.filter(
         (element: any) => selectedVariant === element.node.title
       );
 
@@ -87,9 +88,16 @@ function ProductPage() {
         featuredImage: selectedVariantNode[0].node.image.originalSrc,
         variantType: selectedVariantNode[0].node.title,
         altText: selectedVariantNode[0].node.image.altText,
+        availableForSale: selectedVariantNode[0].node.availableForSale,
       });
     }
   }, [selectedVariant]);
+
+  // useEffect(() => {
+  //   if (productOutOfStock) {
+  //     context.setOutOfStockProducts([...context.outOfStockProducts, id]);
+  //   }
+  // }, [productOutOfStock]);
 
   return (
     <>
@@ -108,18 +116,22 @@ function ProductPage() {
         </div>
         <section className="product-page-container-section">
           <div className="product-page-container-img">
-            <ProductImageZoom
-              imgSrc={variantDetails.featuredImage || defaultImage}
-              altText={variantDetails.altText || "@corgowaffles merchandise"}
-            />
+            {defaultImage && (
+              <ProductImageZoom
+                imgSrc={variantDetails.featuredImage || defaultImage}
+                altText={variantDetails.altText || "@corgowaffles merchandise"}
+              />
+            )}
           </div>
           <ProductDetails
+            selectedVariant={selectedVariant}
             setSelectedVariant={setSelectedVariant}
             variantDetails={variantDetails}
             hasOnlyOneVariant={hasOnlyOneVariant}
             productTitle={productTitle}
             productVariants={productVariants}
             productDesc={productDesc}
+            productId={id}
           />
         </section>
       </div>

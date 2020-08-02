@@ -6,6 +6,7 @@ const QueryContext = createContext<any>({});
 
 function QueryContextProvider(props: any) {
   const [shopProductDisplay, setShopProductDisplay] = useState([]);
+  // console.log("shop product", shopProductDisplay);
 
   const {
     loading: inventoryLoading,

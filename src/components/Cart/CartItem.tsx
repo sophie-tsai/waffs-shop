@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 import { changeQuantity, deleteItem } from "../../redux/cartItems";
+import { Link } from "react-router-dom";
 
 type CartItemProps = {
   variantId: string;
@@ -10,8 +11,9 @@ type CartItemProps = {
   price: string;
   productTitle: string;
   quantity: string;
-  type: string;
+  variantType: string;
   altText: string | undefined;
+  productId: string;
 };
 
 function CartItem(props: CartItemProps) {
@@ -21,8 +23,9 @@ function CartItem(props: CartItemProps) {
     price,
     productTitle,
     quantity,
-    type,
+    variantType,
     altText,
+    productId,
   } = props;
   const subtotal: number = parseFloat(price) * parseFloat(quantity);
   const formattedSubtotal: string = new Intl.NumberFormat("en-US", {
@@ -38,10 +41,10 @@ function CartItem(props: CartItemProps) {
     dispatch(changeQuantity({ id: variantId, quantity: difference }));
   };
 
+  console.log("props", props);
   const handleDelete = () => {
     dispatch(deleteItem(variantId));
   };
-  // console.log(props);
 
   return (
     <div>
@@ -53,9 +56,18 @@ function CartItem(props: CartItemProps) {
               <img className="cart-item-image" src={imgSrc} alt={altText} />
             </div>
             <div className="cart-item-description">
-              <p className="cart-item-title">{productTitle}</p>
+              <p className="cart-item-title">
+                <Link
+                  to={`/shop/${productId}`}
+                  className="cart-item-title-link"
+                >
+                  {productTitle}
+                </Link>
+              </p>
               <p className="cart-item-info">${price}</p>
-              {type && <p className="cart-item-info">style: {type}</p>}
+              {variantType && variantType !== "Default Title" && (
+                <p className="cart-item-info">style: {variantType}</p>
+              )}
             </div>
           </div>
 

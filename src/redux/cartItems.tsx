@@ -6,10 +6,11 @@ type AddItemProps = {
   variantId: string;
   imgSrc: string;
   productTitle: string | undefined;
-  type: string;
+  variantType: string;
   quantity: string;
   price: string;
-  altText: string | undefined;
+  productId: string;
+  // altText: string | undefined;
 };
 
 export function addItem(props: AddItemProps) {
@@ -17,10 +18,11 @@ export function addItem(props: AddItemProps) {
     variantId,
     imgSrc,
     productTitle,
-    type,
+    variantType,
     quantity,
     price,
-    altText,
+    productId,
+    // altText,
   } = props;
   return {
     type: "ADD_ITEM",
@@ -28,10 +30,11 @@ export function addItem(props: AddItemProps) {
       variantId,
       imgSrc,
       productTitle,
-      type,
+      variantType,
       quantity,
       price,
-      altText,
+      productId,
+      // altText,
     },
   };
 }

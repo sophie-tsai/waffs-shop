@@ -8,26 +8,20 @@ type ProductProps = {
   altText?: string;
   productTitle: string;
   id: string;
+  allVariantsSoldOut: boolean;
 };
 
 function Product(props: ProductProps) {
-  const { productTitle, productImage, id, altText } = props;
-
-  const defaultProductImage =
-    "https://pbs.twimg.com/media/EWiqBdYUMAA2KZv?format=jpg&name=large";
-  const defaultProductTitle = "original waffles sticker";
+  const { productTitle, productImage, id, altText, allVariantsSoldOut } = props;
 
   return (
-    <div className="product-container">
+    <div
+      className={`product-container ${allVariantsSoldOut && `out-of-stock`}`}
+    >
       <Link to={`/shop/${id}`} className="product-link">
-        <img
-          src={productImage || defaultProductImage}
-          className="product-thumbnail"
-          alt={altText}
-        />
-        <p className="product-title">
-          {productTitle.toLocaleLowerCase() || defaultProductTitle}
-        </p>
+        <img src={productImage} className="product-thumbnail" alt={altText} />
+        <p className="product-title">{productTitle.toLocaleLowerCase()}</p>
+        {allVariantsSoldOut && <p>sold out</p>}
       </Link>
     </div>
   );

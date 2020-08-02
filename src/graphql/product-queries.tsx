@@ -29,6 +29,7 @@ export const GET_PRODUCTS = gql`
                     altText
                   }
                   price
+                  availableForSale
                 }
               }
             }
@@ -65,6 +66,7 @@ export const GET_PRODUCT = gql`
             }
           }
         }
+
         variants(first: 10) {
           edges {
             node {
@@ -72,7 +74,6 @@ export const GET_PRODUCT = gql`
               image {
                 id
                 originalSrc
-                altText
               }
               title
               availableForSale

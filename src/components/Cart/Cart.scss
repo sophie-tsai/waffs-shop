@@ -11,9 +11,18 @@
 .cart-item {
   &-title {
     font-size: 1rem;
-    color: $black-color;
+
     margin: 1rem 0;
     margin-left: 1rem;
+
+    &-link {
+      color: $black-color;
+      text-decoration: none;
+
+      &:hover {
+        color: $gray-color;
+      }
+    }
   }
 
   &-subtotal {

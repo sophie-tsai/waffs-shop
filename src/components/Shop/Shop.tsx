@@ -2,12 +2,14 @@ import React, { useEffect, useContext, useState, ReactNode } from "react";
 import "./Shop.scss";
 import "../LandingPage/LandingPage.scss";
 import Product from "./Product";
-import { QueryContext } from "../../queryContext/QueryContext";
+import { QueryContext } from "../../context/QueryContext";
+import { StockContext } from "../../context/StockContext";
 
 function Shop() {
   const [displayProducts, setDisplayProducts] = useState<ReactNode[]>([]);
 
   const context = useContext(QueryContext);
+  const { stockSet, counter } = useContext(StockContext);
 
   useEffect(() => {
     if (context.shopProductDisplay) {
@@ -25,10 +27,12 @@ function Shop() {
             productImage={product.node.images.edges[0].node.src}
             id={product.node.id}
             altText={product.node.images.edges[0].node.altText}
+            allVariantsSoldOut={stockSet.has(product.node.id)}
           />
         )
       );
       setDisplayProducts(productsArray);
+      console.log("is this running " + counter);
     }
   }, [context]);
 
@@ -37,6 +41,7 @@ function Shop() {
       <div className="shop-page">
         <h1 className="shop-headline">shop the collection</h1>
         <section className="shop-container">{displayProducts}</section>
+        <p>{counter}</p>
       </div>
       <hr className="theme-horizontal-bar" />
     </>
