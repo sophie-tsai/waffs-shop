@@ -41,7 +41,7 @@ function CartItem(props: CartItemProps) {
     dispatch(changeQuantity({ id: variantId, quantity: difference }));
   };
 
-  console.log("props", props);
+  // console.log("props", props);
   const handleDelete = () => {
     dispatch(deleteItem(variantId));
   };

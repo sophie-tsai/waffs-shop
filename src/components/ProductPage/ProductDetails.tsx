@@ -42,7 +42,7 @@ function ProductDetails(props: ProductDetailsProps) {
     productId,
   } = props;
 
-  console.log("props", props);
+  // console.log("props", props);
   console.log("global state", cartState.items);
 
   const handleDropDown = (event: ChangeEvent<HTMLSelectElement>) => {

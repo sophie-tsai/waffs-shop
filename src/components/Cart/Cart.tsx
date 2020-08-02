@@ -11,7 +11,7 @@ function Cart() {
   const cartState = useSelector((state: RootStateOrAny) => state.cart);
   const [windowWidth, setWindowWidth] = useState(0);
   const [createCheckoutMutation] = useMutation(CREATE_CHECKOUT);
-  const [checkout, setCheckout] = useState({ webUrl: "" });
+  const [checkout, setCheckout] = useState({ webUrl: "", subtotalPrice: "" });
   // console.log(checkout, "checkout");
 
   const isCartEmpty = () => {
