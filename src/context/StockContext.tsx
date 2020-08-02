@@ -4,13 +4,8 @@ import { QueryContext } from "./QueryContext";
 const StockContext = createContext<any>({});
 
 function StockContextProvider(props: any) {
-  // const stockSets = new Set();
   const [stockSet, setStockSet] = useState(new Set());
-  const [counter, setCounter] = useState(0);
-  //   const [outOfStockProducts, setOutOfStockProducts] = useState<string[]>([]);
-
   const { shopProductDisplay } = useContext(QueryContext);
-  console.log("QC", shopProductDisplay);
 
   useEffect(() => {
     const unavailable = new Set();
@@ -29,12 +24,11 @@ function StockContextProvider(props: any) {
         }
       }
       setStockSet(unavailable);
-      setCounter((counter) => counter + 1);
     }
   }, [shopProductDisplay]);
 
   return (
-    <StockContext.Provider value={{ stockSet, counter }}>
+    <StockContext.Provider value={{ stockSet }}>
       {props.children}
     </StockContext.Provider>
   );

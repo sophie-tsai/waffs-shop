@@ -24,7 +24,7 @@ function ProductPage() {
     availableForSale: true,
   });
   const [selectedVariant, setSelectedVariant] = useState("");
-  const context = useContext(StockContext);
+  // const context = useContext(StockContext);
 
   // SET UP & QUERY
   const {
