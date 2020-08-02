@@ -5,7 +5,6 @@ import App from "./App";
 import { Provider } from "react-redux";
 import store from "./redux";
 import { QueryContextProvider } from "./context/QueryContext";
-import { StockContextProvider } from "./context/StockContext";
 import { BrowserRouter as Router } from "react-router-dom";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
@@ -22,11 +21,9 @@ ReactDOM.render(
     <Provider store={store}>
       <ApolloProvider client={client}>
         <QueryContextProvider>
-          <StockContextProvider>
-            <Router>
-              <App />
-            </Router>
-          </StockContextProvider>
+          <Router>
+            <App />
+          </Router>
         </QueryContextProvider>
       </ApolloProvider>
     </Provider>

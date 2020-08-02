@@ -17,6 +17,11 @@
     color: $black-color;
     text-decoration: none;
   }
+
+  &-sold-out-text {
+    @extend .product;
+    margin-top: 0.5em;
+  }
 }
 
 /***** IMGS *****/

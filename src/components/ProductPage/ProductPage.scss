@@ -134,10 +134,9 @@ select {
 
 /***** MISC *****/
 .out-of-stock {
-  filter: grayscale(1);
+  opacity: 0.5;
 
   &-cursor-default {
-    @extend .out-of-stock;
     cursor: default;
   }
 }

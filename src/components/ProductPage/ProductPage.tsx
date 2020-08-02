@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import "./ProductPage.scss";
 import { useParams, Link } from "react-router-dom";
 import { GET_PRODUCT } from "../../graphql/product-queries";
 import { useQuery } from "@apollo/client";
 import ProductImageZoom from "./ProductImageZoom";
 import ProductDetails from "./ProductDetails";
-import { StockContext } from "../../context/StockContext";
 
 // import ImageCarousel from "./ImageCarousel";
 // import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -13,7 +12,6 @@ import { StockContext } from "../../context/StockContext";
 function ProductPage() {
   const [productQuery, setProductQuery] = useState<any>({});
   const { id } = useParams();
-  // const [productOutOfStock, setProductOutOfStock] = useState(false);
   const [defaultImage, setDefaultImage] = useState("");
   const [variantDetails, setVariantDetails] = useState({
     price: "",
@@ -24,7 +22,6 @@ function ProductPage() {
     availableForSale: true,
   });
   const [selectedVariant, setSelectedVariant] = useState("");
-  // const context = useContext(StockContext);
 
   // SET UP & QUERY
   const {
@@ -65,13 +62,6 @@ function ProductPage() {
           availableForSale: productVariants[0].node.availableForSale,
         });
       }
-
-      // // CHECKS IF ITEM IS SOLD OUT
-      // const variantInStockArray = productVariants.filter(
-      //   (variant: { node: { availableForSale: boolean } }) =>
-      //     variant.node.availableForSale === true
-      // );
-      // if (variantInStockArray.length === 0) setProductOutOfStock(true);
     }
   }, [productQuery]);
 
@@ -92,12 +82,6 @@ function ProductPage() {
       });
     }
   }, [selectedVariant]);
-
-  // useEffect(() => {
-  //   if (productOutOfStock) {
-  //     context.setOutOfStockProducts([...context.outOfStockProducts, id]);
-  //   }
-  // }, [productOutOfStock]);
 
   return (
     <>
