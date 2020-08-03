@@ -60,7 +60,7 @@ const ContactForm: FC = () => {
     <div>
       <form
         className="contact-form"
-        // method="POST"
+        method="POST"
         data-netlify="true"
         name="contact"
         data-netlify-recaptcha="true"
