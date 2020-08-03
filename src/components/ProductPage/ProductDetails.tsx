@@ -43,7 +43,7 @@ function ProductDetails(props: ProductDetailsProps) {
   } = props;
 
   // console.log("props", props);
-  console.log("global state", cartState.items);
+  // console.log("global state", cartState.items);
 
   const handleDropDown = (event: ChangeEvent<HTMLSelectElement>) => {
     if (errorMessage) setErrorMessage("");

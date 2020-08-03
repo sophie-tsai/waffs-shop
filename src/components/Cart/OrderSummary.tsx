@@ -15,7 +15,9 @@ function OrderSummary(props: OrderSummaryProps) {
     <section className="order-summary-container">
       <div className="order-summary-flex-row">
         <span className="order-summary-subtotal">subtotal</span>
-        <span className="order-summary-subtotal">${subtotalPrice}</span>
+        {subtotalPrice && (
+          <span className="order-summary-subtotal">${subtotalPrice}</span>
+        )}
       </div>
       <p style={{ textAlign: "center" }}>
         taxes & shipping calculated at checkout

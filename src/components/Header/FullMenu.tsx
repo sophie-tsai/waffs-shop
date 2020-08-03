@@ -31,7 +31,11 @@ function FullMenu(props: FullMenuProps) {
         className="nav-icon-dynamic"
         onClick={toggleSideMenu}
       />
-      <h1 className="header-title">corgowaffles</h1>
+      <h1 className="header-title">
+        <Link to="/" style={{ textDecoration: "none", color: "#141414" }}>
+          corgowaffles
+        </Link>
+      </h1>
       <nav className="nav-bar">
         <Link
           to="/"

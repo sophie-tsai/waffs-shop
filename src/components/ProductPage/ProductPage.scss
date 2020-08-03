@@ -55,23 +55,6 @@
 
 /***** IMGS *****/
 
-.product-page-img {
-  width: 101%;
-  height: 101%;
-}
-
-.product-page-figure {
-  background-repeat: no-repeat;
-  margin: 0;
-  font-size: 0;
-
-  &:hover {
-    img {
-      opacity: 0;
-    }
-  }
-}
-
 /***** BUTTON *****/
 
 .product-page-add-cart {
@@ -123,11 +106,11 @@ select {
   }
 
   &-img {
-    width: 55%;
+    width: 50%;
   }
 
   &-info {
-    width: 40%;
+    width: 45%;
     text-align: left;
   }
 }

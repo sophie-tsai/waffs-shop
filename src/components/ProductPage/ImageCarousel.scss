@@ -1,0 +1,21 @@
+@import "../../scss/library";
+
+.carousel {
+  .thumb {
+    &.selected,
+    &:hover {
+      border: 3px solid $primary-color;
+      cursor: pointer;
+    }
+  }
+  .control-dots {
+    .dot {
+      box-shadow: 1px 1px 5px $gray-color;
+      outline: none;
+    }
+  }
+
+  .slider {
+    height: auto;
+  }
+}

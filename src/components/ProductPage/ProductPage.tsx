@@ -3,16 +3,15 @@ import "./ProductPage.scss";
 import { useParams, Link } from "react-router-dom";
 import { GET_PRODUCT } from "../../graphql/product-queries";
 import { useQuery } from "@apollo/client";
-import ProductImageZoom from "./ProductImageZoom";
 import ProductDetails from "./ProductDetails";
 
-// import ImageCarousel from "./ImageCarousel";
-// import "react-responsive-carousel/lib/styles/carousel.min.css";
+import ImageCarousel from "./ImageCarousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 function ProductPage() {
   const [productQuery, setProductQuery] = useState<any>({});
   const { id } = useParams();
-  const [defaultImage, setDefaultImage] = useState("");
+
   const [variantDetails, setVariantDetails] = useState({
     price: "",
     variantId: "",
@@ -31,7 +30,7 @@ function ProductPage() {
   } = useQuery(GET_PRODUCT, { variables: { id: id } });
 
   const { productTitle, productDesc, productVariants, images } = productQuery;
-
+  console.log("images", images);
   const hasOnlyOneVariant = () => {
     return productQuery.productVariants.length === 1;
   };
@@ -45,7 +44,6 @@ function ProductPage() {
         productDesc: productData.node.description,
         images: productData.node.images.edges,
       });
-      setDefaultImage(productData.node.images.edges[0].node.originalSrc);
     }
   }, [productLoading]);
 
@@ -100,12 +98,7 @@ function ProductPage() {
         </div>
         <section className="product-page-container-section">
           <div className="product-page-container-img">
-            {defaultImage && (
-              <ProductImageZoom
-                imgSrc={variantDetails.featuredImage || defaultImage}
-                altText={variantDetails.altText || "@corgowaffles merchandise"}
-              />
-            )}
+            <ImageCarousel images={images} />
           </div>
           <ProductDetails
             selectedVariant={selectedVariant}
