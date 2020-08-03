@@ -61,9 +61,9 @@ const ContactForm: FC = () => {
       <form
         className="contact-form"
         // method="POST"
-        // data-netlify="true"
-        // name="contact"
-        // data-netlify-recaptcha="true"
+        data-netlify="true"
+        name="contact"
+        data-netlify-recaptcha="true"
       >
         <div className="contact-info">
           <input
@@ -108,7 +108,7 @@ const ContactForm: FC = () => {
           required
         />
         <br />
-
+        <div data-netlify-recaptcha="true"></div>
         <button className="form-button" onSubmit={(e) => handleSubmit(e)}>
           submit
         </button>
