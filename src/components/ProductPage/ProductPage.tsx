@@ -6,7 +6,6 @@ import { useQuery } from "@apollo/client";
 import ProductDetails from "./ProductDetails";
 
 import ImageCarousel from "./ImageCarousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 function ProductPage() {
   const [productQuery, setProductQuery] = useState<any>({});

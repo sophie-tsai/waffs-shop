@@ -3,7 +3,7 @@ import "./About.scss";
 
 const AboutContent: FC = () => {
   const realCopy1: string = `Henlo! I am a 3 year-old sassy, female forever-pup who lives in Los Angeles. 
-  I enjoy splooting, heccin' at the beach, and eating anything edible (& sometimes inedible). 
+  I enjoy splooting, heccin' at the beach, and eating anything edible (and sometimes inedible). 
   My life may sound relaxing, but it is not without facing dangers such as the vacuum, introoders, and printers. 
   Luckily,  I can easily keep everyone safe from these evil things by barking as loud as possible. Thanks to my efforts, no human has ever been injured.`;
 

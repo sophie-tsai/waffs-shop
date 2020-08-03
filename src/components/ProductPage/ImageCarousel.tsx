@@ -31,9 +31,6 @@ function ImageCarousel(props: ImageCarouselProps) {
       dynamicHeight={true}
       useKeyboardArrows={true}
       swipeable={true}
-      autoPlay={true}
-      interval={1000}
-      transitionTime={200}
     >
       {displayImages}
     </Carousel>
