@@ -68,6 +68,9 @@
 .order-summary-checkout {
   @include button($white-color, $accent-color, $accent-color);
   width: 100%;
+  &:hover {
+    @include button($accent-color, $white-color, $accent-color);
+  }
 }
 
 /***** LAYOUT *****/

@@ -12,6 +12,7 @@ const ContactForm: FC = () => {
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
+  const [button, setButton] = useState("submit");
 
   interface IdataEncoded {
     "form-name": string;
@@ -51,6 +52,11 @@ const ContactForm: FC = () => {
       }),
     })
       .then(() => console.log("Success!"))
+      .then(() => setButton("sent successfully!"))
+      .then(() => setName(""))
+      .then(() => setEmail(""))
+      .then(() => setSubject(""))
+      .then(() => setMessage(""))
       .catch((error) => console.error(error));
 
     e.preventDefault();
@@ -58,14 +64,9 @@ const ContactForm: FC = () => {
 
   return (
     <div>
-      <form
-        className="contact-form"
-        method="POST"
-        data-netlify="true"
-        name="contact"
-        data-netlify-recaptcha="true"
-      >
+      <form className="contact-form" onSubmit={(e) => handleSubmit(e)}>
         <div className="contact-info">
+          <input type="hidden" name="form-name" value="contact" />
           <input
             type="text"
             placeholder="name"
@@ -74,6 +75,7 @@ const ContactForm: FC = () => {
             }}
             value={name}
             className="form-element-name"
+            name="name"
             required
           />
           <input
@@ -84,6 +86,7 @@ const ContactForm: FC = () => {
             }}
             value={email}
             className="form-element-email"
+            name="email"
             required
           />
         </div>
@@ -95,6 +98,7 @@ const ContactForm: FC = () => {
           }}
           value={subject}
           className="form-element-subject"
+          name="subject"
         />
         <br />
         <textarea
@@ -105,12 +109,12 @@ const ContactForm: FC = () => {
           }}
           value={message}
           className="form-element-message"
+          name="message"
           required
         />
         <br />
-        <div data-netlify-recaptcha="true"></div>
-        <button className="form-button" onSubmit={(e) => handleSubmit(e)}>
-          submit
+        <button type="submit" className="form-button">
+          {button}
         </button>
       </form>
     </div>
