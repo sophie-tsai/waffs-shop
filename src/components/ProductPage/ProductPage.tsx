@@ -4,7 +4,6 @@ import { useParams, Link } from "react-router-dom";
 import { GET_PRODUCT } from "../../graphql/product-queries";
 import { useQuery } from "@apollo/client";
 import ProductDetails from "./ProductDetails";
-
 import ImageCarousel from "./ImageCarousel";
 
 function ProductPage() {
