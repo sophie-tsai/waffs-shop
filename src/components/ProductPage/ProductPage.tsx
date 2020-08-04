@@ -29,7 +29,7 @@ function ProductPage() {
   } = useQuery(GET_PRODUCT, { variables: { id: id } });
 
   const { productTitle, productDesc, productVariants, images } = productQuery;
-  console.log("images", images);
+
   const hasOnlyOneVariant = () => {
     return productQuery.productVariants.length === 1;
   };

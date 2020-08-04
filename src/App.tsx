@@ -5,7 +5,6 @@ import { Switch, Route } from "react-router-dom";
 import LandingPage from "./components/LandingPage/LandingPage";
 import Shop from "./components/Shop/Shop";
 import ProductPage from "./components/ProductPage/ProductPage";
-
 import "./App.scss";
 import Cart from "./components/Cart/Cart";
 import About from "./components/About/About";

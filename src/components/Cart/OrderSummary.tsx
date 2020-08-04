@@ -11,11 +11,13 @@ function OrderSummary(props: OrderSummaryProps) {
     window.open(webUrl);
   };
 
+  const zeroDollars = "0.00";
+
   return (
     <section className="order-summary-container">
       <div className="order-summary-flex-row">
         <span className="order-summary-subtotal">subtotal</span>
-        {subtotalPrice && (
+        {subtotalPrice && subtotalPrice !== zeroDollars && (
           <span className="order-summary-subtotal">${subtotalPrice}</span>
         )}
       </div>

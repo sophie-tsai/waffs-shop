@@ -1,12 +1,25 @@
 import { combineReducers, createStore } from "redux";
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 import cartReducer from "./cartItems";
 
 const rootReducer = combineReducers({
   cart: cartReducer,
 });
 
-const store = createStore(rootReducer);
+const persistConfig = {
+  key: "root",
+  storage,
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+const storeAndPersistor = () => {
+  const store = createStore(persistedReducer);
+  const persistor = persistStore(store);
+  return { store, persistor };
+};
 
 // store.subscribe(() => console.log("global state", store.getState()));
 
-export default store;
+export default storeAndPersistor;

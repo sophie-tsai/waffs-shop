@@ -3,7 +3,8 @@ import ReactDOM from "react-dom";
 import "./index.sass";
 import App from "./App";
 import { Provider } from "react-redux";
-import store from "./redux";
+// import store from "./redux";
+import storeAndPersistor from "./redux/index";
 import { QueryContextProvider } from "./context/QueryContext";
 import { BrowserRouter as Router } from "react-router-dom";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
@@ -15,6 +16,8 @@ const client = new ApolloClient({
   },
   cache: new InMemoryCache(),
 });
+
+const { store } = storeAndPersistor();
 
 ReactDOM.render(
   <React.StrictMode>

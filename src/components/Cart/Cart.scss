@@ -66,10 +66,10 @@
 }
 
 .order-summary-checkout {
-  @include button($white-color, $accent-color, $accent-color);
+  @include button($white-color, $primary-color, $primary-color);
   width: 100%;
   &:hover {
-    @include button($accent-color, $white-color, $accent-color);
+    @include button($white-color, $accent-color, $accent-color);
   }
 }
 
@@ -164,6 +164,15 @@
     @include flex(space-between, row);
   }
 }
+
+.cart-loading {
+  margin: 0 auto;
+
+  &-container {
+    @include flex(center, column);
+  }
+}
+
 /***** MISC *****/
 
 .hr-gray {
