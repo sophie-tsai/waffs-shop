@@ -37,6 +37,11 @@ function CartItem(props: CartItemProps) {
 
   const handleQuantityChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.currentTarget;
+    if (parseInt(value) < 1 || value === "") {
+      dispatch(deleteItem(variantId));
+      return;
+    }
+
     const difference = (parseInt(value) - parseInt(quantity)).toString();
     dispatch(changeQuantity({ id: variantId, quantity: difference }));
   };

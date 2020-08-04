@@ -2,12 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.sass";
 import App from "./App";
-import { Provider } from "react-redux";
-// import store from "./redux";
-import storeAndPersistor from "./redux/index";
 import { QueryContextProvider } from "./context/QueryContext";
 import { BrowserRouter as Router } from "react-router-dom";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import { Provider } from "react-redux";
+import storeAndPersistor from "./redux/index";
+
+const { store } = storeAndPersistor();
 
 const client = new ApolloClient({
   uri: "https://waffs-shop.myshopify.com/api/2020-07/graphql.json",
@@ -17,19 +18,17 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-const { store } = storeAndPersistor();
-
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <ApolloProvider client={client}>
+    <ApolloProvider client={client}>
+      <Provider store={store}>
         <QueryContextProvider>
           <Router>
             <App />
           </Router>
         </QueryContextProvider>
-      </ApolloProvider>
-    </Provider>
+      </Provider>
+    </ApolloProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
