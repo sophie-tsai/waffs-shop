@@ -126,4 +126,8 @@
   .contact-headline {
     font-size: 2rem;
   }
+
+  .contact-div {
+    @include intro-section-center(phone);
+  }
 }
