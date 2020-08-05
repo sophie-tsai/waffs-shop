@@ -32,7 +32,7 @@ $layout-breakpoint-phone: 450px;
 
 @mixin page-container-layout {
   background: $white-color;
-  min-height: 100%;
+  min-height: 84vh;
   padding-top: 4.1em;
 }
 

@@ -6,6 +6,8 @@ Fully functioning ecommerce site, integrated with Shopify, deployed on Netlify.
 
 Built using: HTML, CSS, SASS, React, Redux, GraphQL, TypeScript, Shopify, Netlify
 
+![](gif/ezgif.com-video-to-gif.gif)
+
 **Check out other projects:**
 
 - [My Website](https://sophietsai.com)

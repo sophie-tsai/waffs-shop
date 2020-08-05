@@ -20,6 +20,3 @@ function IgFeed() {
 }
 
 export default IgFeed;
-
-// <!-- LightWidget WIDGET --><script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script>
-// <iframe src="https://cdn.lightwidget.com/widgets/503e156f37a05d839dfefa13fc297226.html" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width:100%;border:0;overflow:hidden;"></iframe>
