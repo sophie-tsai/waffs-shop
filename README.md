@@ -2,7 +2,7 @@
 
 Check it out live [here](https://corgowaffles.com)!
 
-Fully function ecommerce site, integrated with Shopify, deployed on Netlify.
+Fully functioning ecommerce site, integrated with Shopify, deployed on Netlify.
 
 Built using: HTML, CSS, SASS, React, Redux, GraphQL, TypeScript, Shopify, Netlify
 

@@ -13,8 +13,8 @@ const LandingPage: FC = () => {
         page="intro"
         imgAlt="waffles at the beach!"
         childComp={<LandingContent />}
+        extra={<IgFeed />}
       />
-      {/* <IgFeed /> */}
     </div>
   );
 };

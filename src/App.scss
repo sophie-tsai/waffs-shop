@@ -6,7 +6,7 @@
 
 .app-container {
   background: $primary-color;
-  height: 100vh;
+  min-height: 100vh;
   overflow: scroll;
   padding: $layout-padding;
 }
