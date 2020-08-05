@@ -42,7 +42,7 @@ function ProductDetails(props: ProductDetailsProps) {
     productId,
   } = props;
 
-  // console.log("props", props);
+  console.log("props", props);
   // console.log("global state", cartState.items);
 
   const handleDropDown = (event: ChangeEvent<HTMLSelectElement>) => {
@@ -145,6 +145,10 @@ function ProductDetails(props: ProductDetailsProps) {
         </button>
         <p className="product-page-description-label">product details</p>
         <p className="product-page-description">{productDesc}</p>
+        <p className="product-page-description">
+          100% of the profits will be donated to the WHO covid-19 solidarity
+          response fund.
+        </p>
       </div>
     </>
   );
