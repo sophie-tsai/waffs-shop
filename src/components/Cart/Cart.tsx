@@ -47,7 +47,7 @@ function Cart() {
     const variables = { input: { lineItems: mappedCheckoutItems } };
     createCheckoutMutation({ variables }).then(
       (res) => {
-        console.log(res);
+        // console.log(res);
         setCheckout(res.data.checkoutCreate.checkout);
       },
       (err) => {

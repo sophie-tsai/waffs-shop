@@ -49,3 +49,25 @@
   }
 }
 /***** MEDIA QUERIES *****/
+
+// under 600px in width
+@media (max-width: $layout-breakpoint-small) {
+  .faq-page {
+    padding-top: 3.1em;
+  }
+}
+
+// under 450px in width
+@media (max-width: $layout-breakpoint-phone) {
+  .faq-headline {
+    font-size: 2rem;
+  }
+
+  .faq-copy {
+    font-size: 1rem;
+  }
+
+  .faq-div {
+    @include intro-section-center(phone);
+  }
+}
