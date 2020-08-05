@@ -1,6 +1,6 @@
 import React from "react";
 import SplitSection from "../layout/SplitSection";
-import wafflesUnamused from "../../assets/waffles-unamused.jpg";
+import wafflesUnamused from "../../assets/compressed/waffles-unamused.jpg";
 import ContactContent from "./ContactContent";
 import "./Contact.scss";
 

@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { Link } from "react-router-dom";
-import wafflesSmiling from "../../assets/waffles-smiling.jpg";
+import wafflesSmiling from "../../assets/compressed/waffles-smiling.jpg";
 
 const LandingContent: FC = () => {
   return (

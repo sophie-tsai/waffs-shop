@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import "./LandingPage.scss";
-import wafflesBeach from "../../assets/waffles-beach.jpg";
+import wafflesBeach from "../../assets/compressed/waffles-beach.jpg";
 import SplitSection from "../layout/SplitSection";
 import LandingContent from "./LandingContent";
 import IgFeed from "./InstaFeed/IgFeed";

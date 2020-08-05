@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import "./About.scss";
-import wafflesRocks from "../../assets/waffles-rocks.jpg";
+import wafflesRocks from "../../assets/compressed/waffles-rocks.jpg";
 import SplitSection from "../layout/SplitSection";
 import AboutContent from "./AboutContent";
 

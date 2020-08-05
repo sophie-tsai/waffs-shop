@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import SplitSection from "../layout/SplitSection";
 import "./FAQ.scss";
-import wafflesMeditate from "../../assets/waffles-meditate.jpg";
+import wafflesMeditate from "../../assets/compressed/waffles-meditate.jpg";
 import FAQContent from "./FAQContent";
 
 const FAQ: FC = () => {
