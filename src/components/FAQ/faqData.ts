@@ -2,9 +2,7 @@ export const faqData: { question: string; answer: string }[] = [
   {
     question: "what is your shipping policy?",
     answer: `orders will be packed and shipped within 3 business days after payment is received. 
-      domestic orders will ship via usps first class mail. 
-      international orders will ship via usps first class international. 
-      orders will not come with tracking and may take up to 8 business days. 
+      domestic orders will ship via usps first class mail. we're currently working on international shipping and hope to get that up and running soon.
       if you have any issues with your order, please send us an email at bork@corgowaffles.com.`,
   },
   {
