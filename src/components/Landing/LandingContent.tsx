@@ -12,11 +12,9 @@ const LandingContent: FC = () => {
         </h2>
       </div>
       <div className="intro-div-button">
-        <button className="intro-button-accent">
-          <Link to="/shop" className="intro-button-accent-link">
-            shop my merch
-          </Link>
-        </button>
+        <Link to="/shop" className="intro-button-accent-link">
+          <button className="intro-button-accent">shop my merch</button>
+        </Link>
       </div>
       <div className="intro-div-img">
         <img
