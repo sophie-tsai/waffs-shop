@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import EmptyCart from "./EmptyCart";
 import "./Cart.scss";
 import { useSelector, RootStateOrAny } from "react-redux";
@@ -6,34 +6,17 @@ import CurrentFullCart from "./CurrentCart";
 import OrderSummary from "./OrderSummary";
 import { useMutation } from "@apollo/client";
 import { CREATE_CHECKOUT } from "../../graphql/check-out";
+import { WindowWidthContext } from "../../context/WindowWidthContext";
 
 function Cart() {
   const cartState = useSelector((state: RootStateOrAny) => state.cart);
-  const [windowWidth, setWindowWidth] = useState(0);
+  const windowWidth = useContext(WindowWidthContext);
   const [createCheckoutMutation] = useMutation(CREATE_CHECKOUT);
   const [checkout, setCheckout] = useState({ webUrl: "", subtotalPrice: "" });
-  // console.log(checkout, "checkout");
 
   const isCartEmpty = () => {
     return cartState.items.length === 0;
   };
-
-  const grabAndSetWidth = () => {
-    const width =
-      window.innerWidth ||
-      document.documentElement.clientWidth ||
-      document.body.clientWidth;
-
-    setWindowWidth(width);
-  };
-
-  useEffect(() => {
-    // window width
-    grabAndSetWidth();
-    window.addEventListener("resize", grabAndSetWidth);
-
-    return () => window.removeEventListener("resize", grabAndSetWidth);
-  }, []);
 
   useEffect(() => {
     const mappedCheckoutItems = cartState.items.map(
@@ -47,7 +30,6 @@ function Cart() {
     const variables = { input: { lineItems: mappedCheckoutItems } };
     createCheckoutMutation({ variables }).then(
       (res) => {
-        // console.log(res);
         setCheckout(res.data.checkoutCreate.checkout);
       },
       (err) => {

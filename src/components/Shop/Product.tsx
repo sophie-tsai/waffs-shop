@@ -25,7 +25,7 @@ function Product(props: ProductProps) {
           alt={altText}
         />
         <p className={`product-title ${allVariantsSoldOut && `line-through`}`}>
-          {productTitle.toLocaleLowerCase()}
+          {productTitle}
         </p>
         {allVariantsSoldOut && (
           <p className="product-sold-out-text">sold out</p>

@@ -1,4 +1,5 @@
-import React, { ReactNode, useState, useEffect } from "react";
+import React, { ReactNode, useContext } from "react";
+import { WindowWidthContext } from "../../context/WindowWidthContext";
 
 type SplitSectionProps = {
   page: string;
@@ -10,24 +11,7 @@ type SplitSectionProps = {
 
 function SplitSection(props: SplitSectionProps) {
   const { page, img: imgSrc, imgAlt, childComp, extra } = props;
-  const [width, setWidth] = useState<Number>(0);
-
-  const setWindowWidth = () => {
-    const windowWidth =
-      window.innerWidth ||
-      document.documentElement.clientWidth ||
-      document.body.clientWidth;
-
-    setWidth(windowWidth);
-  };
-
-  useEffect(() => {
-    setWindowWidth();
-
-    window.addEventListener("resize", setWindowWidth);
-
-    return () => window.removeEventListener("resize", setWindowWidth);
-  }, []);
+  const windowWidth = useContext(WindowWidthContext);
 
   return (
     <>
@@ -39,7 +23,7 @@ function SplitSection(props: SplitSectionProps) {
         <div className="split-secondary-div">{childComp}</div>
       </section>
 
-      {extra && width > 450 && extra}
+      {extra && windowWidth > 450 && extra}
 
       <hr className="theme-horizontal-bar" />
     </>

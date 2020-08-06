@@ -6,6 +6,7 @@ import React, {
   ChangeEvent,
   FormEvent,
 } from "react";
+import { submit } from "./submitFormUtils";
 
 const ContactForm: FC = () => {
   const [name, setName] = useState("");
@@ -13,23 +14,6 @@ const ContactForm: FC = () => {
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
   const [button, setButton] = useState("submit");
-
-  interface IdataEncoded {
-    "form-name": string;
-    name: string;
-    email: string;
-    subject: string;
-    message: string;
-    [key: string]: string;
-  }
-
-  const encode = (data: IdataEncoded) => {
-    return Object.keys(data)
-      .map(
-        (key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
-      )
-      .join("&");
-  };
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>,
@@ -40,25 +24,22 @@ const ContactForm: FC = () => {
   };
 
   const handleSubmit = (e: FormEvent) => {
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({
-        "form-name": "contact",
-        name: name,
-        email: email,
-        subject: subject,
-        message: message,
-      }),
-    })
-      .then(() => console.log("Success!"))
-      .then(() => setButton("sent successfully!"))
-      .then(() => setName(""))
-      .then(() => setEmail(""))
-      .then(() => setSubject(""))
-      .then(() => setMessage(""))
+    const data = {
+      name,
+      email,
+      subject,
+      message,
+    };
+    const submitPromise = submit(data);
+    submitPromise
+      .then(() => {
+        setButton("sent successfully!");
+        setName("");
+        setEmail("");
+        setSubject("");
+        setMessage("");
+      })
       .catch((error) => console.error(error));
-
     e.preventDefault();
   };
 

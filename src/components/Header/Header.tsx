@@ -1,42 +1,30 @@
-import React, { FC, useState, useEffect } from "react";
+import React, { FC, useState, useEffect, useContext } from "react";
 import FullMenu from "./FullMenu";
 import SideMenu from "./SideMenu";
+import { WindowWidthContext } from "../../context/WindowWidthContext";
 
 const Header: FC = () => {
-  const [width, setWidth] = useState(900);
   const [isOpen, setIsOpen] = useState(false);
-
-  const setWindowWidth = () => {
-    const windowWidth =
-      window.innerWidth ||
-      document.documentElement.clientWidth ||
-      document.body.clientWidth;
-
-    setWidth(windowWidth);
-  };
+  const windowWidth = useContext(WindowWidthContext);
 
   const toggleSideMenu = () => {
     setIsOpen(!isOpen);
   };
 
   useEffect(() => {
-    setWindowWidth();
-
-    window.addEventListener("resize", setWindowWidth);
-
-    return () => window.removeEventListener("resize", setWindowWidth);
-  }, []);
-
-  useEffect(() => {
-    if (width > 900) {
+    if (windowWidth > 900) {
       setIsOpen(false);
     }
-  }, [width]);
+  }, [windowWidth]);
 
   return (
     <>
       <FullMenu toggleSideMenu={toggleSideMenu} isOpen={isOpen} />
-      <SideMenu width={width} isOpen={isOpen} toggleSideMenu={toggleSideMenu} />
+      <SideMenu
+        width={windowWidth}
+        isOpen={isOpen}
+        toggleSideMenu={toggleSideMenu}
+      />
     </>
   );
 };

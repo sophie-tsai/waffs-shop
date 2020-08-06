@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import "./LandingPage.scss";
+import "./Landing.scss";
 import wafflesBeach from "../../assets/compressed/waffles-beach.jpg";
 import SplitSection from "../layout/SplitSection";
 import LandingContent from "./LandingContent";

@@ -4,6 +4,7 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 import { changeQuantity, deleteItem } from "../../redux/cartItems";
 import { Link } from "react-router-dom";
+import { getDisplayPrice, getDisplayTotal } from "./priceUtils";
 
 type CartItemProps = {
   variantId: string;
@@ -27,11 +28,6 @@ function CartItem(props: CartItemProps) {
     altText,
     productId,
   } = props;
-  const subtotal: number = parseFloat(price) * parseFloat(quantity);
-  const formattedSubtotal: string = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  }).format(subtotal);
 
   const dispatch = useDispatch();
 
@@ -46,7 +42,6 @@ function CartItem(props: CartItemProps) {
     dispatch(changeQuantity({ id: variantId, quantity: difference }));
   };
 
-  // console.log("props", props);
   const handleDelete = () => {
     dispatch(deleteItem(variantId));
   };
@@ -69,7 +64,7 @@ function CartItem(props: CartItemProps) {
                   {productTitle}
                 </Link>
               </p>
-              <p className="cart-item-info">${price}</p>
+              <p className="cart-item-info">{getDisplayPrice(price)}</p>
               {variantType && variantType !== "Default Title" && (
                 <p className="cart-item-info">style: {variantType}</p>
               )}
@@ -85,7 +80,9 @@ function CartItem(props: CartItemProps) {
               onChange={handleQuantityChange}
               className="cart-item-quantity-input"
             />
-            <p className="cart-item-subtotal">{formattedSubtotal}</p>
+            <p className="cart-item-subtotal">
+              {getDisplayTotal(price, quantity)}
+            </p>
           </div>
         </div>
 

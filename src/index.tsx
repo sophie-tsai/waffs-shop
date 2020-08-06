@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.sass";
 import App from "./App";
 import { QueryContextProvider } from "./context/QueryContext";
+import { WindowWidthProvider } from "./context/WindowWidthContext";
 import { BrowserRouter as Router } from "react-router-dom";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { Provider } from "react-redux";
@@ -23,9 +24,11 @@ ReactDOM.render(
     <ApolloProvider client={client}>
       <Provider store={store}>
         <QueryContextProvider>
-          <Router>
-            <App />
-          </Router>
+          <WindowWidthProvider>
+            <Router>
+              <App />
+            </Router>
+          </WindowWidthProvider>
         </QueryContextProvider>
       </Provider>
     </ApolloProvider>

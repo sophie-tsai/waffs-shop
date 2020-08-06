@@ -2,7 +2,7 @@ import React from "react";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import { Switch, Route } from "react-router-dom";
-import LandingPage from "./components/LandingPage/LandingPage";
+import Landing from "./components/Landing/Landing";
 import Shop from "./components/Shop/Shop";
 import ProductPage from "./components/ProductPage/ProductPage";
 import "./App.scss";
@@ -18,7 +18,7 @@ function App() {
       <div className="app-container">
         <Switch>
           <Route exact path="/">
-            <LandingPage />
+            <Landing />
           </Route>
           <Route exact path="/shop">
             <Shop />

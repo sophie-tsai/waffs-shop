@@ -66,10 +66,10 @@
 }
 
 .order-summary-checkout {
-  @include button($white-color, $primary-color, $primary-color);
+  @include button($white-color, $accent-color, $accent-color);
   width: 100%;
   &:hover {
-    @include button($white-color, $accent-color, $accent-color);
+    @include button($white-color, $primary-color, $primary-color);
   }
 }
 
