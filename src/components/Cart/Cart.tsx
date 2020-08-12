@@ -7,6 +7,7 @@ import OrderSummary from "./OrderSummary";
 import { useMutation } from "@apollo/client";
 import { CREATE_CHECKOUT } from "../../graphql/check-out";
 import { WindowWidthContext } from "../../context/WindowWidthContext";
+import { Animated } from "react-animated-css";
 
 function Cart() {
   const cartState = useSelector((state: RootStateOrAny) => state.cart);
@@ -41,32 +42,40 @@ function Cart() {
   return (
     <>
       <div className="cart-page">
-        <section className="cart-page-container-section">
-          <div
-            className={isCartEmpty() ? `section-cart-empty` : `section-cart`}
-          >
-            <h1 className="">my cart</h1>
-            <hr className="hr-gray" />
+        <Animated
+          animationIn="fadeIn"
+          animationOut="fadeOut"
+          animationInDuration={1500}
+          animationOutDuration={1000}
+          isVisible={true}
+        >
+          <section className="cart-page-container-section">
+            <div
+              className={isCartEmpty() ? `section-cart-empty` : `section-cart`}
+            >
+              <h1 className="">my cart</h1>
+              <hr className="hr-gray" />
 
-            {isCartEmpty() ? (
-              <EmptyCart />
-            ) : (
-              <CurrentFullCart cart={cartState} />
-            )}
-          </div>
-
-          {!isCartEmpty() && (
-            <div className="section-order">
-              {windowWidth > 700 && (
-                <>
-                  <h1>order summary</h1>
-                  <hr className="hr-gray" />
-                </>
+              {isCartEmpty() ? (
+                <EmptyCart />
+              ) : (
+                <CurrentFullCart cart={cartState} />
               )}
-              <OrderSummary checkout={checkout} />
             </div>
-          )}
-        </section>
+
+            {!isCartEmpty() && (
+              <div className="section-order">
+                {windowWidth > 700 && (
+                  <>
+                    <h1>order summary</h1>
+                    <hr className="hr-gray" />
+                  </>
+                )}
+                <OrderSummary checkout={checkout} />
+              </div>
+            )}
+          </section>
+        </Animated>
       </div>
       <hr className="theme-horizontal-bar" />
     </>

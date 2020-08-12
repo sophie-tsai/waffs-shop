@@ -3,16 +3,25 @@ import "./Shop.scss";
 import "../Landing/Landing.scss";
 import Product from "./Product";
 import { QueryContext } from "../../context/QueryContext";
+import { Animated } from "react-animated-css";
 
 export default function Shop() {
   const context = useContext(QueryContext);
   return (
     <>
       <div className="shop-page">
-        <h1 className="shop-headline">shop the collection</h1>
-        <section className="shop-container">
-          {asProductComponent(context.shopProductDisplay)}
-        </section>
+        <Animated
+          animationIn="fadeIn"
+          animationOut="fadeOut"
+          animationInDuration={1500}
+          animationOutDuration={1000}
+          isVisible={true}
+        >
+          <h1 className="shop-headline">shop the collection</h1>
+          <section className="shop-container">
+            {asProductComponent(context.shopProductDisplay)}
+          </section>
+        </Animated>
       </div>
       <hr className="theme-horizontal-bar" />
     </>

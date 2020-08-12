@@ -1,5 +1,6 @@
 import React, { ReactNode, useContext } from "react";
 import { WindowWidthContext } from "../../context/WindowWidthContext";
+import { Animated } from "react-animated-css";
 
 type SplitSectionProps = {
   page: string;
@@ -15,16 +16,23 @@ function SplitSection(props: SplitSectionProps) {
 
   return (
     <>
-      <section className="split-section">
-        <div className="split-main-div">
-          <img src={imgSrc} className={`main-img-${page}`} alt={imgAlt} />
-        </div>
+      <Animated
+        animationIn="fadeIn"
+        animationOut="fadeOut"
+        animationInDuration={1500}
+        animationOutDuration={1000}
+        isVisible={true}
+      >
+        <section className="split-section">
+          <div className="split-main-div">
+            <img src={imgSrc} className={`main-img-${page}`} alt={imgAlt} />
+          </div>
 
-        <div className="split-secondary-div">{childComp}</div>
-      </section>
+          <div className="split-secondary-div">{childComp}</div>
+        </section>
 
-      {extra && windowWidth > 450 && extra}
-
+        {extra && windowWidth > 450 && extra}
+      </Animated>
       <hr className="theme-horizontal-bar" />
     </>
   );
