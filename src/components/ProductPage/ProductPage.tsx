@@ -5,6 +5,7 @@ import { GET_PRODUCT } from "../../graphql/product-queries";
 import { useQuery } from "@apollo/client";
 import ProductDetails from "./ProductDetails";
 import ImageCarousel from "./ImageCarousel";
+import { Animated } from "react-animated-css";
 
 function ProductPage() {
   const [productQuery, setProductQuery] = useState<any>({});
@@ -82,33 +83,41 @@ function ProductPage() {
   return (
     <>
       <div className="product-page">
-        <div className="product-page-nav">
-          <p>
-            <Link to="/" className="product-page-nav-link">
-              home
-            </Link>{" "}
-            /{" "}
-            <Link to="/shop" className="product-page-nav-link">
-              shop
-            </Link>{" "}
-            / {productTitle}
-          </p>
-        </div>
-        <section className="product-page-container-section">
-          <div className="product-page-container-img">
-            <ImageCarousel images={images} />
+        <Animated
+          animationIn="fadeIn"
+          animationOut="fadeOut"
+          animationInDuration={1200}
+          animationOutDuration={1200}
+          isVisible={true}
+        >
+          <div className="product-page-nav">
+            <p>
+              <Link to="/" className="product-page-nav-link">
+                home
+              </Link>{" "}
+              /{" "}
+              <Link to="/shop" className="product-page-nav-link">
+                shop
+              </Link>{" "}
+              / {productTitle}
+            </p>
           </div>
-          <ProductDetails
-            selectedVariant={selectedVariant}
-            setSelectedVariant={setSelectedVariant}
-            variantDetails={variantDetails}
-            hasOnlyOneVariant={hasOnlyOneVariant}
-            productTitle={productTitle}
-            productVariants={productVariants}
-            productDesc={productDesc}
-            productId={id}
-          />
-        </section>
+          <section className="product-page-container-section">
+            <div className="product-page-container-img">
+              <ImageCarousel images={images} />
+            </div>
+            <ProductDetails
+              selectedVariant={selectedVariant}
+              setSelectedVariant={setSelectedVariant}
+              variantDetails={variantDetails}
+              hasOnlyOneVariant={hasOnlyOneVariant}
+              productTitle={productTitle}
+              productVariants={productVariants}
+              productDesc={productDesc}
+              productId={id}
+            />
+          </section>
+        </Animated>
       </div>
       <hr className="theme-horizontal-bar" />
     </>

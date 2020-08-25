@@ -45,8 +45,8 @@ function Cart() {
         <Animated
           animationIn="fadeIn"
           animationOut="fadeOut"
-          animationInDuration={1500}
-          animationOutDuration={1000}
+          animationInDuration={1200}
+          animationOutDuration={1200}
           isVisible={true}
         >
           <section className="cart-page-container-section">

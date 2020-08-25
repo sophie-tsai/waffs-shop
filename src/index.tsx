@@ -4,6 +4,7 @@ import "./index.sass";
 import App from "./App";
 import { QueryContextProvider } from "./context/QueryContext";
 import { WindowWidthProvider } from "./context/WindowWidthContext";
+import { DiscountContextProvider } from "./context/DiscountContext";
 import { BrowserRouter as Router } from "react-router-dom";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { Provider } from "react-redux";
@@ -25,9 +26,11 @@ ReactDOM.render(
       <Provider store={store}>
         <QueryContextProvider>
           <WindowWidthProvider>
-            <Router>
-              <App />
-            </Router>
+            <DiscountContextProvider>
+              <Router>
+                <App />
+              </Router>
+            </DiscountContextProvider>
           </WindowWidthProvider>
         </QueryContextProvider>
       </Provider>

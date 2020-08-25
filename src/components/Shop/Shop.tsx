@@ -3,23 +3,26 @@ import "./Shop.scss";
 import "../Landing/Landing.scss";
 import Product from "./Product";
 import { QueryContext } from "../../context/QueryContext";
+import { DiscountContext } from "../../context/DiscountContext";
 import { Animated } from "react-animated-css";
 
 export default function Shop() {
-  const context = useContext(QueryContext);
+  const queryContext = useContext(QueryContext);
+  const discountContext = useContext(DiscountContext);
+  console.log("codes", discountContext);
   return (
     <>
       <div className="shop-page">
         <Animated
           animationIn="fadeIn"
           animationOut="fadeOut"
-          animationInDuration={1500}
-          animationOutDuration={1000}
+          animationInDuration={1200}
+          animationOutDuration={1200}
           isVisible={true}
         >
           <h1 className="shop-headline">shop the collection</h1>
           <section className="shop-container">
-            {asProductComponent(context.shopProductDisplay)}
+            {asProductComponent(queryContext.shopProductDisplay)}
           </section>
         </Animated>
       </div>
