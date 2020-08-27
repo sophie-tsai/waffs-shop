@@ -9,7 +9,8 @@ import { Animated } from "react-animated-css";
 export default function Shop() {
   const queryContext = useContext(QueryContext);
   const discountContext = useContext(DiscountContext);
-  console.log("codes", discountContext);
+  // console.log("codes", discountContext);
+
   return (
     <>
       <div className="shop-page">

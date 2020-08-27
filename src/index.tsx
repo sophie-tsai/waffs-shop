@@ -12,17 +12,17 @@ import storeAndPersistor from "./redux/index";
 
 const { store } = storeAndPersistor();
 
-const client = new ApolloClient({
+const storefrontClient = new ApolloClient({
   uri: "https://waffs-shop.myshopify.com/api/2020-07/graphql.json",
   headers: {
-    "X-Shopify-Storefront-Access-Token": `${process.env.REACT_APP_SHOPIFY_ACCESS_TOKEN}`,
+    "X-Shopify-Storefront-Access-Token": `${process.env.REACT_APP_SHOPIFY_SHOPFRONT_ACCESS_TOKEN}`,
   },
   cache: new InMemoryCache(),
 });
 
 ReactDOM.render(
   <React.StrictMode>
-    <ApolloProvider client={client}>
+    <ApolloProvider client={storefrontClient}>
       <Provider store={store}>
         <QueryContextProvider>
           <WindowWidthProvider>
