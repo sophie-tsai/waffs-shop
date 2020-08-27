@@ -1,0 +1,27 @@
+@import "../../scss/library";
+
+/***** TYPOGRAPHY *****/
+
+.banner-text {
+  color: $white-color;
+  text-align: center;
+  font-size: 1rem;
+  letter-spacing: 0.2px;
+  margin: 0;
+  font-weight: 700;
+}
+/***** IMGS *****/
+
+/***** BUTTON *****/
+
+/***** LAYOUT *****/
+
+.banner-div {
+  background: $accent-color;
+  padding: 0.5rem;
+  position: fixed;
+  z-index: 10;
+  width: 100%;
+}
+
+/***** MEDIA QUERIES *****/

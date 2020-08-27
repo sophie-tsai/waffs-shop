@@ -2,6 +2,7 @@ import React, { FC, useState, useEffect, useContext } from "react";
 import FullMenu from "./FullMenu";
 import SideMenu from "./SideMenu";
 import { WindowWidthContext } from "../../context/WindowWidthContext";
+import Banner from "../Banner/Banner";
 
 const Header: FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,6 +20,7 @@ const Header: FC = () => {
 
   return (
     <>
+      <Banner />
       <FullMenu toggleSideMenu={toggleSideMenu} isOpen={isOpen} />
       <SideMenu
         width={windowWidth}

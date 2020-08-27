@@ -10,6 +10,7 @@ import Cart from "./components/Cart/Cart";
 import About from "./components/About/About";
 import Contact from "./components/Contact/Contact";
 import FAQ from "./components/FAQ/FAQ";
+// import Banner from "./components/Banner/Banner";
 
 function App() {
   return (
