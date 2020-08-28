@@ -19,7 +19,7 @@ const Header: FC = () => {
   }, [windowWidth]);
 
   return (
-    <>
+    <div className="header-combo">
       <Banner />
       <FullMenu toggleSideMenu={toggleSideMenu} isOpen={isOpen} />
       <SideMenu
@@ -27,7 +27,7 @@ const Header: FC = () => {
         isOpen={isOpen}
         toggleSideMenu={toggleSideMenu}
       />
-    </>
+    </div>
   );
 };
 

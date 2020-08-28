@@ -1,9 +1,4 @@
-import React, {
-  createContext,
-  useState,
-  useEffect,
-  SetStateAction,
-} from "react";
+import React, { createContext, useState, useEffect } from "react";
 import { discountCodes } from "../utils/discountCodesData";
 
 const DiscountContext = createContext<any>([]);
@@ -13,23 +8,13 @@ function isActive(start: string, end: string) {
   const startDate = new Date(start);
   const endDate = new Date(end);
 
-  if (startDate <= currentDate && currentDate <= endDate) {
-    return true;
-  }
-  return false;
-}
-
-interface IDiscountCodeArray {
-  title: string;
-  start: string;
-  end: string;
-  desc: string;
-  isActive: boolean;
+  // if the current date is between the start and end date, then it's active
+  return startDate <= currentDate && currentDate <= endDate;
 }
 
 function DiscountContextProvider(props: any) {
-  const [discountCodesArray, setDiscountCodesArray] = useState<
-    IDiscountCodeArray[] | []
+  const [activeDiscountsArray, setActiveDiscountsArray] = useState<
+    string[] | []
   >([]);
 
   useEffect(() => {
@@ -45,12 +30,19 @@ function DiscountContextProvider(props: any) {
         isActive: false,
       };
     });
-    console.log(withCodeStatus);
-    setDiscountCodesArray(withCodeStatus);
+
+    const activeDiscountsCodes = withCodeStatus.filter((code) => code.isActive);
+
+    const discountCopys = activeDiscountsCodes.map(
+      (code: { desc: string; title: string; end: string }[] | any) => {
+        return `${code.desc}, with the code ${code.title}. ends ${code.end}`;
+      }
+    );
+    setActiveDiscountsArray(discountCopys);
   }, []);
 
   return (
-    <DiscountContext.Provider value={{ discountCodesArray }}>
+    <DiscountContext.Provider value={activeDiscountsArray}>
       {props.children}
     </DiscountContext.Provider>
   );

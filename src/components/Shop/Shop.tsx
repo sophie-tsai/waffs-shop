@@ -3,13 +3,11 @@ import "./Shop.scss";
 import "../Landing/Landing.scss";
 import Product from "./Product";
 import { QueryContext } from "../../context/QueryContext";
-import { DiscountContext } from "../../context/DiscountContext";
+
 import { Animated } from "react-animated-css";
 
 export default function Shop() {
   const queryContext = useContext(QueryContext);
-  const discountContext = useContext(DiscountContext);
-  // console.log("codes", discountContext);
 
   return (
     <>
