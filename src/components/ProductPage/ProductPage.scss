@@ -135,7 +135,7 @@ select {
 // under 600px in width
 @media (max-width: $layout-breakpoint-small) {
   .product-page {
-    padding: 6em 3em 2em;
+    padding: 8em 3em 2em;
   }
 
   .product-page-container-section {
@@ -154,7 +154,7 @@ select {
 // under 450 in width
 @media (max-width: $layout-breakpoint-phone) {
   .product-page {
-    padding: 6em 1.5em 2em;
+    padding: 10em 1.5em 2em;
   }
 
   .product-page-container-section {
