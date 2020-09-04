@@ -16,4 +16,16 @@ export const discountCodes: {
     end: "8/30/2020",
     desc: "free shipping on orders over $10",
   },
+  {
+    title: "HANGINGOUT",
+    start: "",
+    end: "",
+    desc: "free keychain with purchase over $15",
+  },
+  {
+    title: "STUCKTOGETHER",
+    start: "9/18/2020",
+    end: "9/20/2020",
+    desc: "free random sticker with purchase over $10",
+  },
 ];
