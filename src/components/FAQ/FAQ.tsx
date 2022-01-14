@@ -1,12 +1,13 @@
-import React, { FC } from "react";
-import SplitSection from "../layout/SplitSection";
-import "./FAQ.scss";
-import wafflesMeditate from "../../assets/compressed/waffles-meditate.jpg";
-import FAQContent from "./FAQContent";
+import React from 'react';
+import SplitSection from '../layout/SplitSection';
+import './FAQ.scss';
+import wafflesMeditate from '../../assets/compressed/waffles-meditate.jpg';
+import FAQContent from './FAQContent';
+import cn from 'classnames';
 
-const FAQ: FC = () => {
+const FAQ = ({ paddingLarge }: { paddingLarge: boolean }) => {
   return (
-    <div className="faq-page">
+    <div className={cn('faq-page', { 'padding-lg': paddingLarge })}>
       <SplitSection
         page="faq"
         img={wafflesMeditate}

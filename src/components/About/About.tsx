@@ -1,12 +1,14 @@
-import React, { FC } from "react";
-import "./About.scss";
-import wafflesRocks from "../../assets/compressed/waffles-rocks.jpg";
-import SplitSection from "../layout/SplitSection";
-import AboutContent from "./AboutContent";
+import React from 'react';
+import wafflesRocks from '../../assets/compressed/waffles-rocks.jpg';
+import SplitSection from '../layout/SplitSection';
+import AboutContent from './AboutContent';
+import cn from 'classnames';
 
-const About: FC = () => {
+import './About.scss';
+
+const About = ({ paddingLarge }: { paddingLarge: boolean }) => {
   return (
-    <div className="about-page">
+    <div className={cn('about-page', { 'padding-lg': paddingLarge })}>
       <SplitSection
         img={wafflesRocks}
         page="about"

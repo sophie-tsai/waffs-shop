@@ -1,44 +1,45 @@
-import React from "react";
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
-import { Switch, Route } from "react-router-dom";
-import Landing from "./components/Landing/Landing";
-import Shop from "./components/Shop/Shop";
-import ProductPage from "./components/ProductPage/ProductPage";
-import "./App.scss";
-import Cart from "./components/Cart/Cart";
-import About from "./components/About/About";
-import Contact from "./components/Contact/Contact";
-import FAQ from "./components/FAQ/FAQ";
-// import Banner from "./components/Banner/Banner";
+import React from 'react';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
+import { Switch, Route } from 'react-router-dom';
+import Landing from './components/Landing/Landing';
+import Shop from './components/Shop/Shop';
+import ProductPage from './components/ProductPage/ProductPage';
+import './App.scss';
+import Cart from './components/Cart/Cart';
+import About from './components/About/About';
+import Contact from './components/Contact/Contact';
+import FAQ from './components/FAQ/FAQ';
 
 function App() {
+  const showBanner = false;
+
   return (
     <div>
-      <Header />
+      <Header showBanner={showBanner} />
 
       <div className="app-container">
         <Switch>
           <Route exact path="/">
-            <Landing />
+            <Landing paddingLarge={showBanner} />
           </Route>
           <Route exact path="/shop">
             <Shop />
           </Route>
           <Route exact path="/about">
-            <About />
+            <About paddingLarge={showBanner} />
           </Route>
           <Route exact path="/contact">
-            <Contact />
+            <Contact paddingLarge={showBanner} />
           </Route>
           <Route exact path="/faq">
-            <FAQ />
+            <FAQ paddingLarge={showBanner} />
           </Route>
           <Route exact path="/cart">
             <Cart />
           </Route>
           <Route exact path="/shop/:id">
-            <ProductPage />
+            <ProductPage paddingLarge={showBanner} />
           </Route>
         </Switch>
 

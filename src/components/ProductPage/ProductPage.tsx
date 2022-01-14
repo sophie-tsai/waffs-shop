@@ -1,25 +1,27 @@
-import React, { useState, useEffect } from "react";
-import "./ProductPage.scss";
-import { useParams, Link } from "react-router-dom";
-import { GET_PRODUCT } from "../../graphql/product-queries";
-import { useQuery } from "@apollo/client";
-import ProductDetails from "./ProductDetails";
-import ImageCarousel from "./ImageCarousel";
-import { Animated } from "react-animated-css";
+import React, { useState, useEffect } from 'react';
+import './ProductPage.scss';
+import { useParams, Link } from 'react-router-dom';
+import { GET_PRODUCT } from '../../graphql/product-queries';
+import { useQuery } from '@apollo/client';
+import ProductDetails from './ProductDetails';
+import ImageCarousel from './ImageCarousel';
+import { Animated } from 'react-animated-css';
 
-function ProductPage() {
+import cn from 'classnames';
+
+function ProductPage({ paddingLarge }: { paddingLarge: boolean }) {
   const [productQuery, setProductQuery] = useState<any>({});
   const { id } = useParams();
 
   const [variantDetails, setVariantDetails] = useState({
-    price: "",
-    variantId: "",
-    featuredImage: "",
-    altText: "",
-    variantType: "",
+    price: '',
+    variantId: '',
+    featuredImage: '',
+    altText: '',
+    variantType: '',
     availableForSale: true,
   });
-  const [selectedVariant, setSelectedVariant] = useState("");
+  const [selectedVariant, setSelectedVariant] = useState('');
 
   // SET UP & QUERY
   const {
@@ -82,7 +84,7 @@ function ProductPage() {
 
   return (
     <>
-      <div className="product-page">
+      <div className={cn('product-page', { 'padding-lg': paddingLarge })}>
         <Animated
           animationIn="fadeIn"
           animationOut="fadeOut"
@@ -94,11 +96,11 @@ function ProductPage() {
             <p>
               <Link to="/" className="product-page-nav-link">
                 home
-              </Link>{" "}
-              /{" "}
+              </Link>{' '}
+              /{' '}
               <Link to="/shop" className="product-page-nav-link">
                 shop
-              </Link>{" "}
+              </Link>{' '}
               / {productTitle}
             </p>
           </div>

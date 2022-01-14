@@ -21,6 +21,4 @@ const storeAndPersistor = () => {
   return { store, persistor };
 };
 
-// store.subscribe(() => console.log("global state", store.getState()));
-
 export default storeAndPersistor;

@@ -1,4 +1,4 @@
-@import "../../scss/library";
+@import '../../scss/library';
 
 /***** TYPOGRAPHY *****/
 
@@ -36,7 +36,10 @@
 
 /***** LAYOUT *****/
 .faq-page {
-  @include page-container-layout;
+  @include page-container-layout(false);
+  &.padding-lg {
+    @include page-container-layout(true);
+  }
 }
 
 .faq-div {

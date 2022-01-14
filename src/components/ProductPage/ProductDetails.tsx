@@ -1,7 +1,7 @@
-import React, { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
-import { useDispatch, useSelector, RootStateOrAny } from "react-redux";
-import { addItem, changeQuantity } from "../../redux/cartItems";
-import { useHistory } from "react-router-dom";
+import React, { ChangeEvent, Dispatch, SetStateAction, useState } from 'react';
+import { useDispatch, useSelector, RootStateOrAny } from 'react-redux';
+import { addItem, changeQuantity } from '../../redux/cartItems';
+import { useHistory } from 'react-router-dom';
 
 type ProductDetailsProps = {
   selectedVariant: string;
@@ -24,12 +24,12 @@ type ProductDetailsProps = {
 };
 
 function ProductDetails(props: ProductDetailsProps) {
-  const [quantity, setQuantity] = useState("1");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [quantity, setQuantity] = useState('1');
+  const [errorMessage, setErrorMessage] = useState('');
   const history = useHistory();
   const dispatch = useDispatch();
   const cartState = useSelector((state: RootStateOrAny) => state.cart);
-  const missingVariant: string = "select a style";
+  const missingVariant: string = 'select a style';
 
   const {
     selectedVariant,
@@ -42,11 +42,8 @@ function ProductDetails(props: ProductDetailsProps) {
     productId,
   } = props;
 
-  // console.log("props", props);
-  // console.log("global state", cartState.items);
-
   const handleDropDown = (event: ChangeEvent<HTMLSelectElement>) => {
-    if (errorMessage) setErrorMessage("");
+    if (errorMessage) setErrorMessage('');
 
     const { value } = event.target;
 
@@ -96,7 +93,7 @@ function ProductDetails(props: ProductDetailsProps) {
       );
     }
 
-    history.push("/cart");
+    history.push('/cart');
   };
 
   const displayPrice = productVariants && (
@@ -145,10 +142,6 @@ function ProductDetails(props: ProductDetailsProps) {
         </button>
         <p className="product-page-description-label">product details</p>
         <p className="product-page-description">{productDesc}</p>
-        <p className="product-page-description">
-          100% of the profits will be donated to the WHO covid-19 solidarity
-          response fund.
-        </p>
       </div>
     </>
   );

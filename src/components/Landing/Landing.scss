@@ -1,4 +1,4 @@
-@import "../../scss/library";
+@import '../../scss/library';
 
 /***** TYPOGRAPHY *****/
 
@@ -58,13 +58,15 @@
 /***** LAYOUT *****/
 
 .landing-page {
-  @include page-container-layout;
+  @include page-container-layout(false);
+  &.padding-lg {
+    @include page-container-layout(true);
+  }
 }
 
 .split-section {
   @include flex(space-between);
   padding-bottom: 1em;
-  // height: 140vh;
 }
 
 .split-main-div {

@@ -1,10 +1,10 @@
-import React, { FC, useState, useEffect, useContext } from "react";
-import FullMenu from "./FullMenu";
-import SideMenu from "./SideMenu";
-import { WindowWidthContext } from "../../context/WindowWidthContext";
-import Banner from "../Banner/Banner";
+import React, { useState, useEffect, useContext } from 'react';
+import FullMenu from './FullMenu';
+import SideMenu from './SideMenu';
+import { WindowWidthContext } from '../../context/WindowWidthContext';
+import Banner from '../Banner/Banner';
 
-const Header: FC = () => {
+const Header = ({ showBanner }: { showBanner: boolean }) => {
   const [isOpen, setIsOpen] = useState(false);
   const windowWidth = useContext(WindowWidthContext);
 
@@ -20,7 +20,7 @@ const Header: FC = () => {
 
   return (
     <div className="header-combo">
-      <Banner />
+      {showBanner && <Banner />}
       <FullMenu toggleSideMenu={toggleSideMenu} isOpen={isOpen} />
       <SideMenu
         width={windowWidth}
