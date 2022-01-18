@@ -1,29 +1,30 @@
-import React, { useState, useEffect } from "react";
-import { stack as Menu } from "react-burger-menu";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { stack as Menu } from 'react-burger-menu';
+import { Link } from 'react-router-dom';
 
 type SideMenuProps = {
   width: number;
   isOpen: boolean;
   toggleSideMenu: () => void;
+  showBanner: boolean;
 };
 
 function SideMenu(props: SideMenuProps) {
-  const { width, isOpen, toggleSideMenu } = props;
-  const [menuGap, setMenuGap] = useState("5");
+  const { width, isOpen, toggleSideMenu, showBanner } = props;
+  const [menuGap, setMenuGap] = useState('5');
 
   const styles = {
     bmMenuWrap: {
-      position: "fixed",
-      width: "12rem",
+      position: 'fixed',
+      width: '12rem',
       top: `${menuGap}em`,
-      height: "100%",
+      height: '100%',
     },
   };
 
   useEffect(() => {
-    if (width <= 600) setMenuGap("6");
-    if (width <= 450) setMenuGap("6.3");
+    if (width <= 600) setMenuGap(showBanner ? '6' : '4');
+    if (width <= 450) setMenuGap(showBanner ? '6.2' : '4.2');
   }, [width]);
 
   return (

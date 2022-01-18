@@ -1,4 +1,4 @@
-@import "../../scss/library";
+@import '../../scss/library';
 
 /***** TYPOGRAPHY *****/
 
@@ -75,8 +75,12 @@
 
 /***** LAYOUT *****/
 .cart-page {
-  @include page-container-layout;
+  @include page-container-layout(false);
   padding: 10.25em 3em;
+
+  &.padding-lg {
+    @include page-container-layout(true);
+  }
 }
 
 .cart-page-container-section {

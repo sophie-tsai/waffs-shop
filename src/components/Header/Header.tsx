@@ -26,6 +26,7 @@ const Header = ({ showBanner }: { showBanner: boolean }) => {
         width={windowWidth}
         isOpen={isOpen}
         toggleSideMenu={toggleSideMenu}
+        showBanner={showBanner}
       />
     </div>
   );

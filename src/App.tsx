@@ -36,7 +36,7 @@ function App() {
             <FAQ paddingLarge={showBanner} />
           </Route>
           <Route exact path="/cart">
-            <Cart />
+            <Cart paddingLarge={showBanner} />
           </Route>
           <Route exact path="/shop/:id">
             <ProductPage paddingLarge={showBanner} />
