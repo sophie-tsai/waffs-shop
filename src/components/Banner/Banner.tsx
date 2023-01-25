@@ -1,15 +1,15 @@
-import React, { useContext, useState, useEffect } from "react";
-import "./Banner.scss";
+import React, { useContext, useState, useEffect } from 'react';
+import './Banner.scss';
 
-import { DiscountContext } from "../../context/DiscountContext";
+import { DiscountContext } from '../../context/DiscountContext';
 
-import ReactTextRotator from "react-text-rotator";
+// import ReactTextRotator from "react-text-rotator";
 
 function Banner() {
   const discounts = useContext(DiscountContext);
 
   const charityInfo =
-    "100% of the proceeds will be donated to the WHO to help fight covid-19.";
+    '100% of the proceeds will be donated to the WHO to help fight covid-19.';
 
   const [bannerCopy, setBannerCopy] = useState<string[]>([charityInfo]);
 
@@ -22,15 +22,15 @@ function Banner() {
       {/* Need this check because text loop has a bug where without this it won't loop */}
 
       <div className="banner-div">
-        {bannerCopy.length > 1 ? (
+        {/* {bannerCopy.length > 1 ? (
           <ReactTextRotator
             content={getContentChildren(bannerCopy)}
             time={7000}
             startDelay={0}
           />
-        ) : (
-          <p className="banner-text">{charityInfo}</p>
-        )}
+        ) : ( */}
+        <p className="banner-text">{charityInfo}</p>
+        {/* )} */}
       </div>
     </div>
   );
@@ -40,8 +40,8 @@ function getContentChildren(texts: string[]): {}[] {
   return texts.map((text) => {
     return {
       text,
-      className: "banner-text",
-      animation: "fade",
+      className: 'banner-text',
+      animation: 'fade',
     };
   });
 }
