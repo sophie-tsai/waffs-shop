@@ -1,13 +1,13 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import "./Footer.scss";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './Footer.scss';
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faFacebookF,
   faInstagram,
   faTwitter,
-} from "@fortawesome/free-brands-svg-icons";
+} from '@fortawesome/free-brands-svg-icons';
 
 function Footer() {
   return (
@@ -47,7 +47,7 @@ function Footer() {
           <FontAwesomeIcon icon={faTwitter} />
         </a>
       </div>
-      <div className="copyright">© 2020 corgowaffles</div>
+
       <a
         target="_blank"
         rel="noopener noreferrer"

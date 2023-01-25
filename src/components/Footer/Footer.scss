@@ -1,4 +1,4 @@
-@import "../../scss/library";
+@import '../../scss/library';
 
 /***** TYPOGRAPHY *****/
 
@@ -12,10 +12,6 @@
 
 .signature {
   @include link;
-}
-
-.copyright {
-  margin-top: 2em;
 }
 
 /***** ICONS *****/

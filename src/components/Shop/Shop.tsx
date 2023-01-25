@@ -1,29 +1,38 @@
-import React, { useContext } from "react";
-import "./Shop.scss";
-import "../Landing/Landing.scss";
-import Product from "./Product";
-import { QueryContext } from "../../context/QueryContext";
-
-import { Animated } from "react-animated-css";
+import React, { useContext } from 'react';
+import './Shop.scss';
+import '../Landing/Landing.scss';
+import Product from './Product';
+import { QueryContext } from '../../context/QueryContext';
+import wafflesBed from '../../assets/waffles-bed.jpg';
+import { Animated } from 'react-animated-css';
 
 export default function Shop() {
   const queryContext = useContext(QueryContext);
-
+  const SHOP_CLOSED = true;
   return (
     <>
       <div className="shop-page">
-        <Animated
-          animationIn="fadeIn"
-          animationOut="fadeOut"
-          animationInDuration={1200}
-          animationOutDuration={1200}
-          isVisible={true}
-        >
-          <h1 className="shop-headline">shop the collection</h1>
-          <section className="shop-container">
-            {asProductComponent(queryContext.shopProductDisplay)}
-          </section>
-        </Animated>
+        {SHOP_CLOSED ? (
+          <>
+            <div className="vacation-container">
+              <p>sorry, our shop is on vacation. please check back later!</p>
+              <img src={wafflesBed} alt="Waffles on a bed" />
+            </div>
+          </>
+        ) : (
+          <Animated
+            animationIn="fadeIn"
+            animationOut="fadeOut"
+            animationInDuration={1200}
+            animationOutDuration={1200}
+            isVisible={true}
+          >
+            <h1 className="shop-headline">shop the collection</h1>
+            <section className="shop-container">
+              {asProductComponent(queryContext.shopProductDisplay)}
+            </section>
+          </Animated>
+        )}
       </div>
       <hr className="theme-horizontal-bar" />
     </>
